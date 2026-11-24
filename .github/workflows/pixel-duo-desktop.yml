@@ -1,0 +1,79 @@
+name: Build Pixel Duo desktop
+
+on:
+  push:
+    branches:
+      - pixel-duo
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows x64
+            runner: windows-2025
+            arch: x64
+            platform: win32
+            target: --win nsis portable
+            artifact: windows-x64
+            files: apps/desktop/dist-electron/*.exe
+          - name: macOS Apple Silicon
+            runner: macos-15
+            arch: arm64
+            platform: darwin
+            target: --mac dmg
+            artifact: macos-arm64
+            files: apps/desktop/dist-electron/*.dmg
+          - name: macOS Intel
+            runner: macos-15-intel
+            arch: x64
+            platform: darwin
+            target: --mac dmg
+            artifact: macos-x64
+            files: apps/desktop/dist-electron/*.dmg
+    env:
+      CSC_IDENTITY_AUTO_DISCOVERY: "false"
+    steps:
+      - name: Check out source and bundled plugins
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install desktop build dependencies
+        run: pnpm --filter '@open-pets/desktop...' install --frozen-lockfile
+
+      - name: Build desktop bundles
+        run: pnpm --filter '@open-pets/desktop' build
+
+      - name: Package desktop app
+        run: pnpm --dir apps/desktop exec electron-builder ${{ matrix.target }} --${{ matrix.arch }} --publish never
+
+      - name: Validate packaged desktop app
+        run: pnpm --dir apps/desktop exec node dist/check-packaging-contract.js --output --platform ${{ matrix.platform }} --arch ${{ matrix.arch }}
+
+      - name: Verify packaged default pet
+        run: pnpm --dir apps/desktop exec node scripts/check-pixel-duo-package.cjs
+
+      - name: Upload installers
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixel-duo-${{ matrix.artifact }}
+          path: ${{ matrix.files }}
+          if-no-files-found: error

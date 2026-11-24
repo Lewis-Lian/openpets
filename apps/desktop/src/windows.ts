@@ -40,7 +40,7 @@ import {
   type PluginConfigSoundPickResult,
   type PluginServiceResult,
 } from "./plugin-service.js";
-import { builtInPet, builtInPetOutfitFileName } from "./built-in-pet.js";
+import { builtInPet } from "./built-in-pet.js";
 import { defaultPetSprite, getConfiguredSpriteStates, reactionAnimationMetadata, selectableAnimationMetadata, waitingAnimationDurationOptions } from "@open-pets/pet-format/animation";
 import { readSafePluginManifest } from "./plugin-manifest-reader.js";
 import { registerSessionMediaProtocol } from "./session-media-cache.js";
@@ -700,9 +700,8 @@ export function installInternalUiProtocol(): void {
       const [petId = "", outfitId, ...rest] = url.pathname.replace(/^\//, "").split("/").map((part) => decodeURIComponent(part));
       if (rest.length > 0 || (outfitId !== undefined && !isSafeOutfitId(outfitId))) return new Response(null, { status: 404 });
       if (petId === builtInPet.id) {
-        // The built-in pet's wardrobe ships in the app bundle, not in the pets directory.
-        const fileName = outfitId === undefined || outfitId === defaultOutfitId ? defaultPetSprite.fileName : builtInPetOutfitFileName(outfitId);
-        if (!fileName) return new Response(null, { status: 404 });
+        if (outfitId !== undefined && outfitId !== defaultOutfitId) return new Response(null, { status: 404 });
+        const fileName = defaultPetSprite.fileName;
         const path = join(app.getAppPath(), "assets", fileName);
         return new Response(await readBoundedRegularFile(path, maxCodexSpritesheetBytes, fileName), {
           headers: { "Content-Type": petSpritesheetMimeType(path), "Cache-Control": "private, max-age=60" },
@@ -727,7 +726,7 @@ export function installInternalUiProtocol(): void {
     try {
       if (request.method !== "GET" && request.method !== "HEAD") return new Response(null, { status: 405 });
       const url = new URL(request.url);
-      // `/default` follows the user's default pet; `/builtin` is always the bundled Hoodie Cat.
+      // `/default` follows the user's default pet; `/builtin` serves the bundled companion.
       const isBuiltInRequest = url.pathname === "/builtin";
       if (url.hostname !== "spritesheet" || (url.pathname !== "/default" && !isBuiltInRequest) || url.hash) return new Response(null, { status: 404 });
       const version = url.searchParams.get("v");

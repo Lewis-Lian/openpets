@@ -1,5 +1,5 @@
 import { getAppStateSnapshot, getPetWardrobePreference, setPetWardrobePreference } from "./app-state.js";
-import { builtInPet, builtInPetWardrobe } from "./built-in-pet.js";
+import { builtInPet } from "./built-in-pet.js";
 import { readInstalledPetPackage } from "./installed-pet-layout.js";
 import { info } from "./logger.js";
 import { assertSafePetId } from "./pet-paths.js";
@@ -181,8 +181,7 @@ type InstalledWardrobe =
 
 async function readInstalledPetWardrobe(petId: string): Promise<InstalledWardrobe | undefined> {
   const pet = getAppStateSnapshot().pets.installed.find((candidate) => candidate.id === petId);
-  if (!pet) return undefined;
-  if (pet.id === builtInPet.id) return { format: "classic", wardrobe: builtInPetWardrobe };
+  if (!pet || pet.id === builtInPet.id) return undefined;
   assertSafePetId(petId);
   const petPackage = await readInstalledPetPackage(petId, pet.source?.kind === "team" ? "team" : "personal");
   const wardrobe = petPackage.metadata.wardrobe;

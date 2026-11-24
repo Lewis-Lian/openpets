@@ -4,6 +4,8 @@ description: Learn how OpenPets pet packages describe sprites, reactions, speech
 
 # Pets
 
+OpenPets Pixel Duo bundles 鎏金与紫蝶 as the default companion for fresh profiles. The built-in companion uses its V2 base atlas throughout the day. Imported pets retain their own wardrobe support.
+
 A "pet" is an animated character that lives in a transparent desktop window and
 reacts to agent activity. This doc covers the whole pet lifecycle: what a pet is
 made of, how it gets onto disk, how reactions become animations, and how the

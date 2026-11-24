@@ -56,6 +56,8 @@ import { markOutfitRefresh, suspendPetBodies } from "./pet-window.js";
 import { setPetWardrobeChangeHandler } from "./pet-wardrobe.js";
 import { refreshPetWindowsForPetId } from "./pet-window-refresh.js";
 
+app.setName("OpenPets Pixel Duo");
+
 let teamService: TeamService | null = null;
 let managerCheckInService: ManagerCheckInService | null = null;
 let pendingTeamEnrollmentLink: string | null = null;
@@ -172,9 +174,8 @@ if (!gotSingleInstanceLock) {
 
   app.whenReady().then(async () => {
     initializeLogger();
-    app.setName("OpenPets");
     if (process.platform === "win32") {
-      app.setAppUserModelId("dev.openpets.app");
+      app.setAppUserModelId("dev.openpets.app.pixelduo");
     }
     info("app", "startup begin", {
       version: app.getVersion(),

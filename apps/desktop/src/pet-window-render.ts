@@ -6,7 +6,8 @@ import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 
 import { getAppStateSnapshot, isPetFlippedHorizontally, markPetBroken, resolveCompanionDisplayName, type HudScaleValue, type PetScaleValue } from "./app-state.js";
-import { builtInPet, builtInPetOutfitFileName, builtInPetWardrobe } from "./built-in-pet.js";
+import { builtInPet } from "./built-in-pet.js";
+import { defaultOutfitId } from "@open-pets/pet-format/wardrobe";
 import { getCodexPetSpriteLayout } from "@open-pets/pet-format/sprite-layout";
 import { maxCodexSpritesheetBytes, type CodexPetMetadata } from "@open-pets/pet-format/metadata";
 import { validateCodexPetSpritesheet } from "./pet-atlas-validation.js";
@@ -50,9 +51,8 @@ function petFlipCacheToken(petId: string): string {
 }
 
 export function createBuiltInPetRender(paused: boolean, display: PetTransientDisplay | null, badge: PetStatusBadgeReaction | null, scale: PetScaleValue, cachePrefix: string, petId: string, dismissToken: string | undefined, pluginBubbles: PetPluginBubbles | null, petRole: "default" | "agent", petDragRegion: "drag" | "no-drag"): PetContentRender {
-  // The wardrobe follows the built-in pet itself, also when it stands in for a broken default pet.
-  const outfitId = resolveRenderedPetOutfit(builtInPet.id, builtInPetWardrobe);
-  const spriteUrl = pathToFileURL(join(app.getAppPath(), "assets", builtInPetOutfitFileName(outfitId) ?? defaultPetSprite.fileName)).toString();
+  const outfitId = defaultOutfitId;
+  const spriteUrl = pathToFileURL(join(app.getAppPath(), "assets", defaultPetSprite.fileName)).toString();
   const assetDisplayName = builtInPet.displayName;
   const state = getAppStateSnapshot();
   const displayName = petRole === "default"
@@ -77,6 +77,7 @@ export function createBuiltInPetRender(paused: boolean, display: PetTransientDis
     assetName: assetDisplayName,
     reactionState,
     codexSpriteVersion: defaultPetSprite.version,
+    gazeAnchor: builtInPet.gazeAnchor,
     petScale: scale,
     gazeSpriteBottomInset: getPetWindowSpriteBottomInset(hasPinned, hudScale),
     paused,

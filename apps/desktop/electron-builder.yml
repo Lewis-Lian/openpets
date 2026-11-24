@@ -1,6 +1,6 @@
-appId: dev.openpets.app
-productName: OpenPets
-executableName: openpets
+appId: dev.openpets.app.pixelduo
+productName: OpenPets Pixel Duo
+executableName: openpets-pixel-duo
 protocols:
   - name: OpenPets Teams enrollment
     schemes:
@@ -10,7 +10,7 @@ copyright: Copyright © 2026 OpenPets
 directories:
   output: dist-electron
 
-artifactName: OpenPets-${version}-${os}-${arch}.${ext}
+artifactName: OpenPets-Pixel-Duo-${version}-${os}-${arch}.${ext}
 
 files:
   - dist/**
@@ -22,6 +22,8 @@ files:
   - voice-realtime-preload.cjs
   - assets/**
   - package.json
+  - from: ../../LICENSE
+    to: LICENSE.openpets.txt
 
 extraResources:
   - from: ../../plugins/official
@@ -55,10 +57,11 @@ win:
   icon: assets/app-icon.ico
   target:
     - nsis
+    - portable
   verifyUpdateCodeSignature: false
 
 nsis:
-  artifactName: OpenPets-${version}-win-${arch}-setup.${ext}
+  artifactName: OpenPets-Pixel-Duo-${version}-win-${arch}-setup.${ext}
   oneClick: false
   perMachine: false
   allowToChangeInstallationDirectory: true
