@@ -75,7 +75,7 @@ export const ja: Partial<Messages> = {
   "tray.plugins": "プラグイン...",
   "tray.settings": "設定...",
   "tray.openLogsFolder": "ログフォルダを開く...",
-  "tray.quit": "OpenPets を終了",
+  "tray.quit": "LeiwsPet を終了",
 
   // --- Shared ---
   "common.latest": "最新",
@@ -219,7 +219,7 @@ export const ja: Partial<Messages> = {
 
   // --- App shell (renderer) ---
   "app.controlCenter": "コントロールセンター",
-  "app.logo.alt": "OpenPets",
+  "app.logo.alt": "LeiwsPet",
 
   // --- Dashboard (renderer) ---
   "dashboard.loading": "相棒の指標を収集中...",
@@ -421,9 +421,9 @@ export const ja: Partial<Messages> = {
   "settings.launchers.error": "ランチャーを更新できませんでした。選択したアプリを確認して、もう一度お試しください。",
   "settings.launchers.pickerTitle": "アプリを選択",
   "settings.general.showOnLaunch.title": "起動時にペットを表示",
-  "settings.general.showOnLaunch.description": "OpenPets をトレイに常駐させつつ、要求があるまでペットを非表示にします。",
+  "settings.general.showOnLaunch.description": "LeiwsPet をトレイに常駐させつつ、要求があるまでペットを非表示にします。",
   "settings.general.launchAtLogin.title": "ログイン時に起動",
-  "settings.general.launchAtLogin.supported": "コンピューターの起動時に OpenPets を自動的に開始します。",
+  "settings.general.launchAtLogin.supported": "コンピューターの起動時に LeiwsPet を自動的に開始します。",
   "settings.general.launchAtLogin.unsupported": "このプラットフォームではサポートされていません。",
   "settings.general.petScale.title": "ペットのサイズ",
   "settings.general.petScale.description": "デフォルトのデスクトップペットの表示サイズを調整します。",
@@ -928,7 +928,7 @@ export const ja: Partial<Messages> = {
 
   // --- Settings: Language section (renderer) ---
   "settings.language.title": "言語",
-  "settings.language.description": "OpenPets のメニューとウィンドウの表示言語。",
+  "settings.language.description": "LeiwsPet のメニューとウィンドウの表示言語。",
   "settings.language.system": "システムのデフォルト",
 
   // --- Manager Check-ins (renderer) ---

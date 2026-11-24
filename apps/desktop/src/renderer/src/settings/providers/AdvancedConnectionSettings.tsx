@@ -149,7 +149,7 @@ export function AdvancedConnectionSettings({
                   <input
                     type="text"
                     className="settings-select text-xs font-mono"
-                    placeholder="Header Name"
+                    placeholder={t("settings.providers.headerNamePlaceholder")}
                     value={customAuth.headerName}
                     disabled={disabled}
                     onChange={(e) =>
@@ -167,7 +167,7 @@ export function AdvancedConnectionSettings({
                       })
                     }
                   >
-                    <option value="bearer">Bearer &lt;token&gt;</option>
+                    <option value="bearer">{t("settings.providers.authBearer")}</option>
                     <option value="raw">{t("settings.providers.voiceAuth.raw")}</option>
                   </select>
                 </div>

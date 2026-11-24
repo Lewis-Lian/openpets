@@ -75,7 +75,7 @@ export const ptBR: Partial<Messages> = {
   "tray.plugins": "Plugins...",
   "tray.settings": "Configurações...",
   "tray.openLogsFolder": "Abrir pasta de logs...",
-  "tray.quit": "Sair do OpenPets",
+  "tray.quit": "Sair do LeiwsPet",
 
   // --- Shared ---
   "common.latest": "mais recente",
@@ -219,7 +219,7 @@ export const ptBR: Partial<Messages> = {
 
   // --- App shell (renderer) ---
   "app.controlCenter": "Central de controle",
-  "app.logo.alt": "OpenPets",
+  "app.logo.alt": "LeiwsPet",
 
   // --- Dashboard (renderer) ---
   "dashboard.loading": "Coletando métricas dos companheiros...",
@@ -421,9 +421,9 @@ export const ptBR: Partial<Messages> = {
   "settings.launchers.error": "Não foi possível atualizar a lista. Confira o aplicativo selecionado e tente novamente.",
   "settings.launchers.pickerTitle": "Escolher um aplicativo",
   "settings.general.showOnLaunch.title": "Mostrar pet ao iniciar",
-  "settings.general.showOnLaunch.description": "Mantenha o OpenPets na bandeja, mas oculte o pet até que seja solicitado.",
+  "settings.general.showOnLaunch.description": "Mantenha o LeiwsPet na bandeja, mas oculte o pet até que seja solicitado.",
   "settings.general.launchAtLogin.title": "Iniciar ao fazer login",
-  "settings.general.launchAtLogin.supported": "Inicie o OpenPets automaticamente quando o seu computador ligar.",
+  "settings.general.launchAtLogin.supported": "Inicie o LeiwsPet automaticamente quando o seu computador ligar.",
   "settings.general.launchAtLogin.unsupported": "Não compatível com esta plataforma.",
   "settings.general.petScale.title": "Escala do pet",
   "settings.general.petScale.description": "Ajuste o tamanho com que o pet padrão aparece no desktop.",
@@ -928,7 +928,7 @@ export const ptBR: Partial<Messages> = {
 
   // --- Settings: Language section (renderer) ---
   "settings.language.title": "Idioma",
-  "settings.language.description": "Idioma de exibição dos menus e janelas do OpenPets.",
+  "settings.language.description": "Idioma de exibição dos menus e janelas do LeiwsPet.",
   "settings.language.system": "Padrão do sistema",
 
   // --- Manager Check-ins (renderer) ---
@@ -1195,8 +1195,8 @@ export const ptBR: Partial<Messages> = {
   "settings.voiceDevices.outputLoading": "Detectando dispositivos de saída de áudio...",
   "settings.voiceDevices.inputUnavailableTitle": "Entrada de microfone indisponível",
   "settings.voiceDevices.inputUnavailableBody": "Não foi possível carregar os dispositivos de entrada de áudio. Clique em Atualizar dispositivos para tentar novamente.",
-  "settings.voiceDevices.inputDisconnectedNotice": "O microfone selecionado está desconectado. O OpenPets está usando temporariamente o padrão do sistema.",
-  "settings.voiceDevices.outputDisconnectedNotice": "O alto-falante selecionado está desconectado. O OpenPets está usando temporariamente o padrão do sistema.",
+  "settings.voiceDevices.inputDisconnectedNotice": "O microfone selecionado está desconectado. O LeiwsPet está usando temporariamente o padrão do sistema.",
+  "settings.voiceDevices.outputDisconnectedNotice": "O alto-falante selecionado está desconectado. O LeiwsPet está usando temporariamente o padrão do sistema.",
   "settings.voiceDevices.outputUnsupportedTitle": "Seleção personalizada de alto-falante não suportada",
   "settings.voiceDevices.outputUnsupportedBody": "Este sistema operacional ou ambiente de execução não suporta o roteamento de saída de áudio. O áudio será reproduzido pelo dispositivo padrão do sistema.",
   "settings.voiceDevices.outputUnavailableTitle": "Saída de alto-falante indisponível",
@@ -1208,7 +1208,7 @@ export const ptBR: Partial<Messages> = {
   "settings.voiceDevices.inputEmpty": "Nenhum microfone detectado.",
   "settings.voiceDevices.outputEmpty": "Nenhum alto-falante detectado.",
   "settings.voiceDevices.inputNote": "As alterações são aplicadas na próxima sessão do Talk ou teste de gravação. Gravações em andamento nunca são interrompidas.",
-  "settings.voiceDevices.outputNote": "A saída selecionada se aplica à voz gerada do OpenPets, áudio em tempo real e prévias. O TTS do sistema segue o dispositivo de saída do SO.",
+  "settings.voiceDevices.outputNote": "A saída selecionada se aplica à voz gerada do LeiwsPet, áudio em tempo real e prévias. O TTS do sistema segue o dispositivo de saída do SO.",
   "settings.voiceDevices.footerNote": "As preferências de áudio são salvas localmente neste computador e aplicadas automaticamente na próxima sessão de voz.",
   "settings.voiceDevices.busy.saving": "Salvando preferência de dispositivo de áudio...",
   "settings.voiceDevices.toast.inputSaved": "Preferência de microfone salva.",

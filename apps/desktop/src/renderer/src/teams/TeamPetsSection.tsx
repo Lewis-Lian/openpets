@@ -1,3 +1,4 @@
+import { useI18n } from "../i18n.js";
 import defaultThumbUrl from "../../../../assets/default-pet-thumbnail.png";
 import { SpriteFrame, installedPetSpritesheetUrl } from "../components/PetSprite.js";
 import type { PetSpriteLayout } from "../pet-preview-state.js";
@@ -10,26 +11,27 @@ export type TeamPetsSectionProps = {
 };
 
 export function TeamPetsSection({ pets, spriteLayouts }: TeamPetsSectionProps) {
+  const { t } = useI18n();
   return (
     <section data-team-pets className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
         <div>
           <h3 className="m-0 font-monoDisplay text-lg font-black text-navy dark:text-slate-100 flex items-center gap-2">
             <PetIcon />
-            <span>Team Pets</span>
+            <span>{t("teams.pets.title")}</span>
             <span className="inline-flex items-center rounded-full bg-blue-100/60 dark:bg-blue-950 dark:text-blue-300 px-2 py-0.5 text-[11px] font-bold text-brand">
               {pets.length}
             </span>
           </h3>
           <p className="m-0 mt-0.5 text-xs text-slatecopy">
-            Company-curated companions installed from your organization’s Team Pack.
+            {t("teams.pets.description")}
           </p>
         </div>
       </div>
 
       {pets.length === 0 ? (
         <div className="flex min-h-24 flex-col items-center justify-center rounded-2xl border border-dashed border-blue-200/80 bg-blue-50/20 dark:border-slate-800 dark:bg-slate-900/40 p-5 text-center text-xs text-slatecopy">
-          <span>No team pets are currently deployed in your organization’s pack.</span>
+          <span>{t("teams.pets.empty")}</span>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -58,7 +60,7 @@ export function TeamPetsSection({ pets, spriteLayouts }: TeamPetsSectionProps) {
                     {pet.displayName}
                   </strong>
                   <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-brand border border-blue-100/60 shrink-0 dark:bg-blue-950/60 dark:border-blue-800 dark:text-blue-300">
-                    Team Managed
+                    {t("teams.asset.managed")}
                   </span>
                 </div>
                 <span className="text-[11px] font-mono text-slatecopy block truncate mt-0.5">

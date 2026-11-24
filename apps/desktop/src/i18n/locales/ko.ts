@@ -75,7 +75,7 @@ export const ko: Partial<Messages> = {
   "tray.plugins": "플러그인...",
   "tray.settings": "설정...",
   "tray.openLogsFolder": "로그 폴더 열기...",
-  "tray.quit": "OpenPets 종료",
+  "tray.quit": "LeiwsPet 종료",
 
   // --- Shared ---
   "common.latest": "최신",
@@ -219,7 +219,7 @@ export const ko: Partial<Messages> = {
 
   // --- App shell (renderer) ---
   "app.controlCenter": "컨트롤 센터",
-  "app.logo.alt": "OpenPets",
+  "app.logo.alt": "LeiwsPet",
 
   // --- Dashboard (renderer) ---
   "dashboard.loading": "동반자 지표를 수집하는 중...",
@@ -421,9 +421,9 @@ export const ko: Partial<Messages> = {
   "settings.launchers.error": "앱 실행기 목록을 업데이트하지 못했습니다. 선택한 앱을 확인하고 다시 시도하세요.",
   "settings.launchers.pickerTitle": "앱 선택",
   "settings.general.showOnLaunch.title": "실행 시 펫 표시",
-  "settings.general.showOnLaunch.description": "OpenPets를 트레이에 유지하되 요청하기 전까지 펫을 숨깁니다.",
+  "settings.general.showOnLaunch.description": "LeiwsPet를 트레이에 유지하되 요청하기 전까지 펫을 숨깁니다.",
   "settings.general.launchAtLogin.title": "로그인 시 실행",
-  "settings.general.launchAtLogin.supported": "컴퓨터가 시작될 때 OpenPets를 자동으로 실행합니다.",
+  "settings.general.launchAtLogin.supported": "컴퓨터가 시작될 때 LeiwsPet를 자동으로 실행합니다.",
   "settings.general.launchAtLogin.unsupported": "이 플랫폼에서는 지원되지 않습니다.",
   "settings.general.petScale.title": "펫 크기",
   "settings.general.petScale.description": "기본 데스크톱 펫이 표시되는 크기를 조정합니다.",
@@ -928,7 +928,7 @@ export const ko: Partial<Messages> = {
 
   // --- Settings: Language section (renderer) ---
   "settings.language.title": "언어",
-  "settings.language.description": "OpenPets 메뉴와 창의 표시 언어입니다.",
+  "settings.language.description": "LeiwsPet 메뉴와 창의 표시 언어입니다.",
   "settings.language.system": "시스템 기본값",
 
   // --- Manager Check-ins (renderer) ---
@@ -1195,8 +1195,8 @@ export const ko: Partial<Messages> = {
   "settings.voiceDevices.outputLoading": "오디오 출력 장치를 검색하는 중...",
   "settings.voiceDevices.inputUnavailableTitle": "마이크 입력을 사용할 수 없습니다",
   "settings.voiceDevices.inputUnavailableBody": "마이크 장치 정보를 불러올 수 없습니다. '장치 새로고침'을 클릭하여 다시 시도하세요.",
-  "settings.voiceDevices.inputDisconnectedNotice": "선택한 마이크의 연결이 끊어졌습니다. OpenPets가 임시로 시스템 기본 마이크를 사용합니다.",
-  "settings.voiceDevices.outputDisconnectedNotice": "선택한 스피커의 연결이 끊어졌습니다. OpenPets가 임시로 시스템 기본 스피커를 사용합니다.",
+  "settings.voiceDevices.inputDisconnectedNotice": "선택한 마이크의 연결이 끊어졌습니다. LeiwsPet가 임시로 시스템 기본 마이크를 사용합니다.",
+  "settings.voiceDevices.outputDisconnectedNotice": "선택한 스피커의 연결이 끊어졌습니다. LeiwsPet가 임시로 시스템 기본 스피커를 사용합니다.",
   "settings.voiceDevices.outputUnsupportedTitle": "스피커 개별 선택이 지원되지 않습니다",
   "settings.voiceDevices.outputUnsupportedBody": "현재 운영체제 환경에서는 스피커 장치 전환을 지원하지 않습니다. 오디오는 OS 기본 스피커로 재생됩니다.",
   "settings.voiceDevices.outputUnavailableTitle": "스피커 출력을 사용할 수 없습니다",

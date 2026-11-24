@@ -41,8 +41,8 @@ assert.match(workspaceConfig, /supportedArchitectures:[\s\S]*?cpu:[\s\S]*?- x64[
 assert.match(workspaceConfig, /supportedArchitectures:[\s\S]*?libc:[\s\S]*?- glibc/, "pnpm must install optional sharp binaries for Linux glibc release targets.");
 assert.match(packageJson.devDependencies?.["electron-builder"] ?? "", /^\^26\.(?:9|[1-9]\d)\./, "desktop AppImage packaging must use electron-builder 26.9+ for conditional Linux sandbox handling.");
 assert.match(builderConfig, /appId:\s*dev\.openpets\.app/);
-assert.match(builderConfig, /productName:\s*OpenPets/);
-assert.match(builderConfig, /executableName:\s*openpets/, "desktop packages must use a safe executable name for the stricter AppImage toolset.");
+assert.match(builderConfig, /productName:\s*LeiwsPet/);
+assert.match(builderConfig, /executableName:\s*leiwspet/, "desktop packages must use a safe executable name for the stricter AppImage toolset.");
 assert.match(builderConfig, /output:\s*dist-electron/);
 assert.match(builderConfig, /linux:[\s\S]*?target:[\s\S]*?- AppImage[\s\S]*?- deb[\s\S]*?- rpm[\s\S]*?- tar\.gz/, "desktop Linux packaging must include AppImage, deb, rpm, and tar.gz targets.");
 assert.match(builderConfig, /publish:\s*null/);

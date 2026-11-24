@@ -99,27 +99,27 @@ export function TeamPluginCard({
               <span
                 className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold border ${policyBadgeStyle}`}
               >
-                {plugin.policy === "required" ? "Required by Org" : "Optional"}
+                {plugin.policy === "required" ? t("teams.plugin.required") : t("teams.plugin.optional")}
               </span>
 
               {isBlocked ? (
                 <span className="inline-flex items-center gap-1 rounded-full bg-amber-100/80 px-2 py-0.5 text-[10px] font-bold text-amber-800 border border-amber-200/80 dark:bg-amber-950/80 dark:border-amber-700 dark:text-amber-300">
                   <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
-                  <span>Needs Approval</span>
+                  <span>{t("teams.plugin.needsApproval")}</span>
                 </span>
               ) : plugin.enabled ? (
                 <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-700 border border-emerald-100/60 dark:bg-emerald-950/60 dark:border-emerald-800 dark:text-emerald-300">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  <span>Active</span>
+                  <span>{t("teams.plugin.active")}</span>
                 </span>
               ) : (
                 <span className="inline-flex items-center rounded-full bg-slate-50 px-2 py-0.5 text-[10px] font-bold text-slate-600 border border-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400">
-                  <span>Disabled</span>
+                  <span>{t("teams.plugin.disabled")}</span>
                 </span>
               )}
 
               <span className="inline-flex items-center text-brand font-semibold text-[10px]">
-                Team Managed
+                {t("teams.asset.managed")}
               </span>
             </div>
           </div>
@@ -139,10 +139,10 @@ export function TeamPluginCard({
                 {isToggling ? (
                   <>
                     <RefreshIcon className="w-3.5 h-3.5 animate-spin" />
-                    <span>Disabling...</span>
+                    <span>{t("teams.plugin.disabling")}</span>
                   </>
                 ) : (
-                  <span>Disable</span>
+                  <span>{t("teams.plugin.disable")}</span>
                 )}
               </button>
             ) : (
@@ -156,10 +156,10 @@ export function TeamPluginCard({
                 {isToggling ? (
                   <>
                     <RefreshIcon className="w-3.5 h-3.5 animate-spin" />
-                    <span>Enabling...</span>
+                    <span>{t("teams.plugin.enabling")}</span>
                   </>
                 ) : (
-                  <span>Enable</span>
+                  <span>{t("teams.plugin.enable")}</span>
                 )}
               </button>
             )}
@@ -175,32 +175,29 @@ export function TeamPluginCard({
             <ShieldLockIcon />
             <div className="flex-1 min-w-0 text-[11px]">
               <strong className="block font-bold text-amber-950 dark:text-amber-200 mb-0.5">
-                Device Approval Required
+                {t("teams.plugin.approvalTitle")}
               </strong>
-              This plugin is{" "}
               {plugin.policy === "required"
-                ? "required by your organization"
-                : "offered by your organization"}
-              , but organization policy never automatically grants permissions. You must review
-              and grant permission on this computer before it can run.
+                ? t("teams.plugin.requiredPolicy")
+                : t("teams.plugin.offeredPolicy")}
             </div>
           </div>
 
           {/* Requested Capabilities Breakdown */}
           <div className="flex flex-col gap-1.5">
             <span className="font-monoDisplay text-[10px] font-black uppercase tracking-wider text-slatecopy/80 dark:text-slate-400">
-              Requested Capabilities ({requestedPermissions.length})
+              {t("teams.plugin.capabilityCount", { count: requestedPermissions.length })}
             </span>
 
             {requestedPermissions.length === 0 ? (
               <span className="text-xs text-slatecopy italic">
-                No system permissions requested.
+                {t("teams.plugin.noSystemPermissions")}
               </span>
             ) : (
               <div className="flex flex-col gap-1.5">
                 {requestedPermissions.map((perm) => {
                   const label = getPermissionLabel(perm, t);
-                  const desc = getPermissionDescription(perm);
+                  const desc = getPermissionDescription(perm, t);
                   const tone = getPermissionTone(perm);
                   const sensitive = isSensitivePermission(perm);
 
@@ -224,7 +221,7 @@ export function TeamPluginCard({
                       </div>
                       {sensitive && (
                         <span className="inline-flex items-center rounded bg-red-100 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-red-700 dark:bg-red-950 dark:text-red-300 shrink-0">
-                          Sensitive
+                          {t("teams.plugin.sensitive")}
                         </span>
                       )}
                     </div>
@@ -239,7 +236,7 @@ export function TeamPluginCard({
             <div className="flex flex-col gap-1.5 pt-1.5 border-t border-blue-50 dark:border-slate-800">
               <span className="font-monoDisplay text-[10px] font-black uppercase tracking-wider text-slatecopy/80 dark:text-slate-400 flex items-center gap-1.5">
                 <GlobeIcon />
-                <span>Allowed Network Destinations ({requestedNetworkHosts.length})</span>
+                <span>{t("teams.plugin.hostCount", { count: requestedNetworkHosts.length })}</span>
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {requestedNetworkHosts.map((host) => (
@@ -258,7 +255,7 @@ export function TeamPluginCard({
           {/* In-Place Action Bar */}
           <div className="flex items-center justify-between gap-3 pt-2 border-t border-amber-200/60 dark:border-slate-800">
             <span className="text-[11px] text-slatecopy dark:text-slate-400 leading-tight">
-              Approval applies only to this device.
+              {t("teams.plugin.deviceOnly")}
             </span>
             <button
               type="button"
@@ -269,15 +266,15 @@ export function TeamPluginCard({
               {isApproving ? (
                 <>
                   <RefreshIcon className="w-3.5 h-3.5 animate-spin" />
-                  <span>Approving...</span>
+                  <span>{t("teams.plugin.approving")}</span>
                 </>
               ) : (
                 <>
                   <ShieldCheckIcon />
                   <span>
                     {plugin.policy === "required"
-                      ? "Approve & Activate"
-                      : "Approve Permissions"}
+                      ? t("teams.plugin.approveAndActivate")
+                      : t("teams.plugin.approve")}
                   </span>
                 </>
               )}
@@ -292,7 +289,7 @@ export function TeamPluginCard({
               <div className="flex items-center justify-between text-[11px] text-slatecopy dark:text-slate-400 pt-1 border-t border-blue-50/80 dark:border-slate-800">
                 <div className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 font-semibold">
                   <ShieldCheckIcon />
-                  <span>Permissions approved on this device</span>
+                  <span>{t("teams.plugin.approved")}</span>
                 </div>
                 <button
                   type="button"
@@ -301,8 +298,8 @@ export function TeamPluginCard({
                 >
                   <span>
                     {isExpanded
-                      ? "Hide Details"
-                      : `View Permissions (${requestedPermissions.length})`}
+                      ? t("teams.plugin.hideDetails")
+                      : t("teams.plugin.showPermissions", { count: requestedPermissions.length })}
                   </span>
                   {isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
                 </button>
@@ -316,7 +313,7 @@ export function TeamPluginCard({
                         <span
                           key={perm}
                           className={`pill ${statusPillToneClass[getPermissionTone(perm)]}`}
-                          title={getPermissionDescription(perm)}
+                          title={getPermissionDescription(perm, t)}
                         >
                           {getPermissionLabel(perm, t)}
                         </span>
@@ -327,7 +324,7 @@ export function TeamPluginCard({
                   {requestedNetworkHosts.length > 0 && (
                     <div className="flex flex-col gap-1 pt-1.5 border-t border-blue-100/40 dark:border-slate-800">
                       <span className="text-[10px] font-monoDisplay uppercase font-bold text-slatecopy/70">
-                        Network Destinations
+                        {t("teams.plugin.network")}
                       </span>
                       <div className="flex flex-wrap gap-1.5">
                         {requestedNetworkHosts.map((host) => (
@@ -346,10 +343,10 @@ export function TeamPluginCard({
             </>
           ) : (
             <div className="flex items-center justify-between border-t border-blue-50/80 dark:border-slate-800 pt-2 text-[11px] text-slatecopy">
-              <span className="text-slatecopy/70">Configuration centrally managed</span>
+              <span className="text-slatecopy/70">{t("teams.plugin.centralConfig")}</span>
               <span className="text-emerald-700 dark:text-emerald-400 font-semibold text-[10px] flex items-center gap-1">
                 <CheckIcon />
-                <span>No Extra Permissions</span>
+                <span>{t("teams.plugin.noExtraPermissions")}</span>
               </span>
             </div>
           )}

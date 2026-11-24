@@ -1,4 +1,4 @@
-import { Menu, Tray, type MenuItemConstructorOptions } from "electron";
+import { app, Menu, Tray, type MenuItemConstructorOptions } from "electron";
 
 import { getAppStateSnapshot } from "./app-state.js";
 import { createTrayIcon } from "./assets.js";
@@ -24,7 +24,7 @@ export function createAppTray(): Tray {
   }
 
   tray = new Tray(createTrayIcon());
-  tray.setToolTip("OpenPets");
+  tray.setToolTip(app.getName());
   if (!voiceOperationSubscriptionInstalled) {
     voiceOperationSubscriptionInstalled = true;
     subscribePluginVoiceOperation(() => refreshTrayMenu());
@@ -51,7 +51,7 @@ export function refreshTrayMenu(): void {
 
   const menu = Menu.buildFromTemplate([
     {
-      label: "OpenPets",
+      label: app.getName(),
       enabled: false,
     },
     ...createUpdateMenuItems(),

@@ -1,7 +1,7 @@
 param([Parameter(Mandatory = $true)][string]$Executable)
 
 $ErrorActionPreference = 'Stop'
-$processName = 'openpets-pixel-duo'
+$processName = 'leiwspet'
 if (Get-Process -Name $processName -ErrorAction SilentlyContinue) {
   throw 'Close the existing Pixel Duo process before running this startup check.'
 }
@@ -21,7 +21,7 @@ try {
     }
     if (!$log) {
       $log = Get-ChildItem $env:APPDATA -Directory |
-        Where-Object Name -Match 'open.?pets' |
+        Where-Object Name -Match '^(LeiwsPet|OpenPets Pixel Duo)$' |
         ForEach-Object { Get-ChildItem -LiteralPath $_.FullName -Filter 'openpets.log' -File -Recurse -Depth 2 -ErrorAction SilentlyContinue } |
         Where-Object LastWriteTimeUtc -GE $startedAt |
         Select-Object -ExpandProperty FullName -First 1

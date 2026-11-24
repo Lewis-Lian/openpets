@@ -1,3 +1,4 @@
+import { useI18n } from "../i18n.js";
 import type React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { TeamEnrollmentSection } from "./TeamEnrollmentSection.js";
@@ -25,6 +26,7 @@ import type { TeamPluginPresentation, TeamsApi, TeamsSnapshot, TeamsViewProps } 
 import type { PetSpriteLayout } from "../pet-preview-state.js";
 
 export function TeamsView({ api }: TeamsViewProps) {
+  const { t } = useI18n();
   const [snapshot, setSnapshot] = useState<TeamsSnapshot>(() => emptyTeamsSnapshot());
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState("");
@@ -95,7 +97,7 @@ export function TeamsView({ api }: TeamsViewProps) {
       const next = await api.submitTeamsEnrollment(validation.name);
       setSnapshot(next);
       setDisplayNameInput("");
-      setSuccessMessage(`Enrolled successfully in ${next.organizationName || "team"}!`);
+      setSuccessMessage(t("teams.notice.enrolled", { organization: next.organizationName || t("teams.notice.team") }));
     } catch (err) {
       setActionError(
         err instanceof Error ? err.message : "Failed to complete Teams enrollment.",
@@ -126,7 +128,7 @@ export function TeamsView({ api }: TeamsViewProps) {
       const next = await api.leaveTeams();
       setSnapshot(next);
       setDisplayNameInput("");
-      setSuccessMessage("Invitation discarded. Open a new invitation link to continue.");
+      setSuccessMessage(t("teams.notice.discarded"));
     } catch (err) {
       setActionError(err instanceof Error ? err.message : "Failed to discard the invitation.");
     } finally {
@@ -141,7 +143,7 @@ export function TeamsView({ api }: TeamsViewProps) {
     try {
       const next = await api.syncTeamsNow();
       setSnapshot(next);
-      setSuccessMessage("Team Pack synchronized successfully.");
+      setSuccessMessage(t("teams.notice.synced"));
     } catch (err) {
       setActionError(
         err instanceof Error ? err.message : "Failed to synchronize Team Pack.",
@@ -166,9 +168,9 @@ export function TeamsView({ api }: TeamsViewProps) {
       }
       const updatedPlugin = next?.teamPlugins?.find((p) => p.id === pluginId);
       if (updatedPlugin?.enabled) {
-        setSuccessMessage(`Permissions approved for ${pluginId}. Plugin is now active.`);
+        setSuccessMessage(t("teams.notice.approvedActive", { plugin: pluginId }));
       } else {
-        setSuccessMessage(`Permissions approved for ${pluginId}.`);
+        setSuccessMessage(t("teams.notice.approved", { plugin: pluginId }));
       }
     } catch (err) {
       setActionError(
@@ -196,7 +198,7 @@ export function TeamsView({ api }: TeamsViewProps) {
         setSnapshot(next);
       }
       setSuccessMessage(
-        enabled ? `Plugin ${pluginId} enabled.` : `Plugin ${pluginId} disabled.`,
+        enabled ? t("teams.notice.enabled", { plugin: pluginId }) : t("teams.notice.disabled", { plugin: pluginId }),
       );
     } catch (err) {
       setActionError(
@@ -218,7 +220,7 @@ export function TeamsView({ api }: TeamsViewProps) {
       const next = await api.leaveTeams();
       setSnapshot(next);
       setShowLeaveModal(false);
-      setSuccessMessage("Successfully disconnected from organization.");
+      setSuccessMessage(t("teams.notice.left"));
     } catch (err) {
       setActionError(
         err instanceof Error ? err.message : "Failed to leave organization.",
@@ -240,13 +242,13 @@ export function TeamsView({ api }: TeamsViewProps) {
       <div className="flex h-72 flex-col items-center justify-center gap-4 text-center rounded-[28px] border border-blue-100/70 bg-white/75 p-6 shadow-sm">
         <div className="flex items-center gap-2 text-sm font-semibold text-slatecopy">
           <RefreshIcon />
-          <span>Loading Teams status...</span>
+          <span>{t("teams.page.loading")}</span>
         </div>
       </div>
     );
   }
 
-  const activeError = formatTeamsError(snapshot.lastError || actionError);
+  const activeError = formatTeamsError(snapshot.lastError || actionError, t);
   const pendingApprovalsCount = countPendingPluginApprovals(snapshot.teamPlugins);
 
   return (
@@ -262,7 +264,7 @@ export function TeamsView({ api }: TeamsViewProps) {
             type="button"
             className="text-emerald-700 hover:text-emerald-900 cursor-pointer p-1"
             onClick={() => setSuccessMessage("")}
-            aria-label="Dismiss message"
+            aria-label={t("teams.page.dismissMessage")}
           >
             <CloseIcon />
           </button>
@@ -275,7 +277,7 @@ export function TeamsView({ api }: TeamsViewProps) {
           <div className="flex items-start gap-2.5">
             <AlertCircleIcon />
             <div>
-              <strong className="block font-bold text-red-900">Action Error</strong>
+              <strong className="block font-bold text-red-900">{t("teams.page.actionError")}</strong>
               <p className="m-0 text-xs text-red-800 mt-0.5">{actionError}</p>
             </div>
           </div>
@@ -283,7 +285,7 @@ export function TeamsView({ api }: TeamsViewProps) {
             type="button"
             className="text-red-700 hover:text-red-900 cursor-pointer p-1 shrink-0"
             onClick={() => setActionError("")}
-            aria-label="Dismiss error"
+            aria-label={t("teams.page.dismissError")}
           >
             <CloseIcon />
           </button>
@@ -319,7 +321,7 @@ export function TeamsView({ api }: TeamsViewProps) {
                 onClick={() => void handleSyncNow()}
               >
                 <RefreshIcon />
-                <span>Retry Sync</span>
+                <span>{t("teams.page.retrySync")}</span>
               </button>
             )}
           </div>
@@ -382,11 +384,9 @@ export function TeamsView({ api }: TeamsViewProps) {
             </div>
             <div className="flex-1 min-w-0 text-xs leading-relaxed">
               <strong className="block font-bold text-navy dark:text-slate-100 mb-0.5">
-                Personal Content Isolation
+                {t("teams.page.isolation")}
               </strong>
-              Your personal catalog pets, Codex pets, and local plugins remain completely untouched
-              in your local storage. Organization updates only synchronize assets under the team
-              namespace.
+              {t("teams.page.isolationBody")}
             </div>
           </div>
         </div>

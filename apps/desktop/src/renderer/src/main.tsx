@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { createRoot } from "react-dom/client";
 import { I18nProvider, useI18n, type I18nSnapshot } from "./i18n";
 import "./styles.css";
-import openPetsLogoUrl from "../../../assets/openpets-logo.webp";
+import appIconUrl from "../../../assets/app-icon.png";
 import defaultThumbUrl from "../../../assets/default-pet-thumbnail.png";
 import { TeamsView } from "./teams/TeamsView.js";
 import {
@@ -990,6 +990,7 @@ function PetPoolOrderList({
   disabled: boolean;
   onChangeOrder: (newOrder: string[]) => void;
 }) {
+  const { t } = useI18n();
   const [addValue, setAddValue] = useState("");
   const nameFor = (id: string) => candidates.find((c) => c.id === id)?.displayName ?? id;
   const available = candidates.filter((c) => !order.includes(c.id));
@@ -1028,7 +1029,7 @@ function PetPoolOrderList({
   return (
     <div className="flex flex-col border-t border-blue-50">
       {order.length === 0 && (
-        <p className="px-5 py-4 text-xs text-slatecopy">No pets in the pool yet. Add one below.</p>
+        <p className="px-5 py-4 text-xs text-slatecopy">{t("settings.petPool.empty")}</p>
       )}
       {order.map((id, idx) => (
         <div
@@ -1036,7 +1037,7 @@ function PetPoolOrderList({
           className="flex items-center gap-3 border-b border-blue-50 px-5 py-3 transition-colors hover:bg-white/80 last:border-b-0"
         >
           <span className="w-14 shrink-0 font-mono text-xs font-bold text-slatecopy">
-            {`Slot ${idx + 1}`}
+            {t("settings.petPool.slot", { number: idx + 1 })}
           </span>
           <span className="flex-1 truncate text-sm font-semibold text-navy">{nameFor(id)}</span>
           <div className="flex shrink-0 items-center gap-1">
@@ -1044,7 +1045,7 @@ function PetPoolOrderList({
               className="btn btn-compact btn-secondary"
               disabled={disabled || idx === 0}
               onClick={() => handleMoveUp(idx)}
-              aria-label="Move up"
+              aria-label={t("settings.petPool.moveUp")}
             >
               ↑
             </button>
@@ -1052,7 +1053,7 @@ function PetPoolOrderList({
               className="btn btn-compact btn-secondary"
               disabled={disabled || idx === order.length - 1}
               onClick={() => handleMoveDown(idx)}
-              aria-label="Move down"
+              aria-label={t("settings.petPool.moveDown")}
             >
               ↓
             </button>
@@ -1060,18 +1061,18 @@ function PetPoolOrderList({
               className="btn btn-compact btn-danger"
               disabled={disabled}
               onClick={() => handleRemove(idx)}
-              aria-label="Remove from pool"
+              aria-label={t("settings.petPool.remove")}
             >
-              Remove
+              {t("common.remove")}
             </button>
           </div>
         </div>
       ))}
       <div className="flex items-center gap-3 px-5 py-3">
         {candidates.length === 0 ? (
-          <p className="text-xs text-slatecopy">No additional pets installed. Install pets from the catalog to add them here.</p>
+          <p className="text-xs text-slatecopy">{t("settings.petPool.noCandidates")}</p>
         ) : available.length === 0 ? (
-          <p className="text-xs text-slatecopy">All installed pets are already in the pool.</p>
+          <p className="text-xs text-slatecopy">{t("settings.petPool.allAdded")}</p>
         ) : (
           <>
             <select
@@ -1090,7 +1091,7 @@ function PetPoolOrderList({
               disabled={disabled || available.length === 0}
               onClick={handleAdd}
             >
-              Add to pool
+              {t("settings.petPool.add")}
             </Button>
           </>
         )}
@@ -4222,9 +4223,9 @@ function ControlCenter({ onAppearanceThemeChange }: { onAppearanceThemeChange: (
   return (
     <main className="app-shell">
       <header className="hero">
-        <img src={openPetsLogoUrl} className="hero-brand-logo" alt={t("app.logo.alt")} />
+        <img src={appIconUrl} className="hero-brand-logo" alt="" />
         <div className="hero-content">
-          <p className="eyebrow">{t("app.controlCenter")}</p>
+          <p className="eyebrow">{t("app.logo.alt")} · {t("app.controlCenter")}</p>
           <h1>{t(currentMeta.titleKey)}</h1>
         </div>
         <p className="hero-desc">{t(currentMeta.descKey)}</p>

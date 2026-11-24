@@ -35,7 +35,7 @@ export function TeamEnrollmentSection({
   onDiscardEnrollment,
   onOpenOrganizationsPage,
 }: TeamEnrollmentSectionProps) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const isBusy = Boolean(busy);
   const isSubmitDisabled = isBusy || !isEnrollmentActionable(snapshot, displayNameInput);
 
@@ -48,18 +48,17 @@ export function TeamEnrollmentSection({
           </div>
           <div className="flex-1 min-w-0">
             <span className="font-monoDisplay text-[10px] font-black uppercase tracking-[.18em] text-brand block mb-0.5">
-              Invitation Received
+              {t("teams.enrollment.received")}
             </span>
             <h2 className="m-0 font-monoDisplay text-2xl font-black text-navy leading-tight">
-              Complete Team Enrollment
+              {t("teams.enrollment.complete")}
             </h2>
             <p className="m-0 mt-1 text-xs text-slatecopy leading-relaxed">
-              An invitation to join an organization was opened on this computer. Set a friendly
-              display name so your organization administrator can identify this device.
+              {t("teams.enrollment.description")}
             </p>
             {(snapshot.pendingOrganizationName || snapshot.pendingOrganizationId) && (
               <p className="m-0 mt-2 text-xs font-semibold text-navy dark:text-slate-100">
-                Organization: {snapshot.pendingOrganizationName || snapshot.pendingOrganizationId}
+                {t("teams.enrollment.organization")} {snapshot.pendingOrganizationName || snapshot.pendingOrganizationId}
                 {snapshot.pendingOrganizationName && snapshot.pendingOrganizationId
                   ? ` (${snapshot.pendingOrganizationId})`
                   : ""}
@@ -67,7 +66,7 @@ export function TeamEnrollmentSection({
             )}
             {snapshot.pendingEnrollmentExpiresAt && (
               <p className="m-0 mt-1 text-xs text-slatecopy">
-                Invitation expires: {formatDate(snapshot.pendingEnrollmentExpiresAt)}
+                {t("teams.enrollment.expires")} {formatDate(snapshot.pendingEnrollmentExpiresAt, locale, t("teams.enrollment.unknownDate"))}
               </p>
             )}
           </div>
@@ -82,7 +81,7 @@ export function TeamEnrollmentSection({
               htmlFor="team-device-name"
               className="text-xs font-bold text-navy flex items-center justify-between"
             >
-              <span>Device Display Name</span>
+              <span>{t("teams.enrollment.displayName")}</span>
               <span className="text-[11px] font-mono text-slatecopy/70">
                 {displayNameInput.length}/80
               </span>
@@ -93,7 +92,7 @@ export function TeamEnrollmentSection({
               maxLength={80}
               value={displayNameInput}
               onChange={(e) => onDisplayNameChange(e.target.value)}
-              placeholder="e.g., Work Laptop, Devbox, or MacBook Pro"
+              placeholder={t("teams.enrollment.placeholder")}
               disabled={isBusy}
               className="team-input"
               autoFocus
@@ -102,8 +101,7 @@ export function TeamEnrollmentSection({
 
           <div className="flex items-center justify-between gap-3 pt-2">
             <span className="text-[11px] text-slatecopy leading-snug">
-              This connects your device to your team’s private catalog. Personal pets and plugins
-              remain completely separate.
+              {t("teams.enrollment.separation")}
             </span>
             <div className="flex items-center gap-2 shrink-0">
               <button
@@ -111,7 +109,7 @@ export function TeamEnrollmentSection({
                 disabled={isSubmitDisabled}
                 className="btn btn-primary px-5 shrink-0"
               >
-                {busy ? "Enrolling..." : "Accept & Enroll"}
+                {busy ? t("teams.enrollment.enrolling") : t("teams.enrollment.accept")}
               </button>
               <button
                 type="button"
@@ -119,7 +117,7 @@ export function TeamEnrollmentSection({
                 onClick={onDiscardEnrollment}
                 className="btn btn-compact btn-secondary text-xs shrink-0"
               >
-                Discard Invitation
+                {t("teams.enrollment.discard")}
               </button>
               <button
                 type="button"
@@ -128,7 +126,7 @@ export function TeamEnrollmentSection({
                 className="btn btn-compact btn-secondary text-xs shrink-0"
               >
                 <RefreshIcon />
-                Refresh Invitation
+                {t("teams.enrollment.refreshInvitation")}
               </button>
             </div>
           </div>
@@ -209,13 +207,13 @@ export function TeamEnrollmentSection({
           </div>
           <div className="flex-1 min-w-0">
             <span className="font-monoDisplay text-[10px] font-black uppercase tracking-[.18em] text-brand block mb-0.5">
-              Joining An Existing Organization
+              {t("teams.enrollment.existing")}
             </span>
             <h3 className="m-0 font-monoDisplay text-lg font-black text-navy dark:text-slate-100 leading-tight">
-              Have an invitation from your team?
+              {t("teams.enrollment.inviteTitle")}
             </h3>
             <p className="m-0 mt-1 text-xs text-slatecopy dark:text-slate-300 leading-relaxed">
-              If your workplace already uses OpenPets Teams, your administrator can provide an enrollment link to connect this desktop client.
+              {t("teams.enrollment.inviteBody")}
             </p>
           </div>
         </div>
@@ -223,38 +221,34 @@ export function TeamEnrollmentSection({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mt-2">
           <div className="team-guide-step">
             <span className="font-monoDisplay text-[11px] font-black uppercase tracking-wider text-brand">
-              1. Get Invitation
+              {t("teams.enrollment.stepGet")}
             </span>
             <p className="m-0 text-xs text-slatecopy leading-relaxed">
-              Ask your team administrator for a deep-link invitation URL.
+              {t("teams.enrollment.stepGetBody")}
             </p>
           </div>
 
           <div className="team-guide-step">
             <span className="font-monoDisplay text-[11px] font-black uppercase tracking-wider text-brand">
-              2. Open Link
+              {t("teams.enrollment.stepOpen")}
             </span>
             <p className="m-0 text-xs text-slatecopy leading-relaxed">
-              Click the link (
-              <code className="font-mono text-[10px] bg-blue-100/70 px-1 py-0.5 rounded dark:bg-slate-800 dark:text-slate-200">
-                openpets://teams/enroll...
-              </code>
-              ) on this computer.
+              {t("teams.enrollment.stepOpenBody", { link: "openpets://teams/enroll..." })}
             </p>
           </div>
 
           <div className="team-guide-step">
             <span className="font-monoDisplay text-[11px] font-black uppercase tracking-wider text-brand">
-              3. Auto Sync
+              {t("teams.enrollment.stepSync")}
             </span>
             <p className="m-0 text-xs text-slatecopy leading-relaxed">
-              Your organization’s companions and plugins will appear here automatically.
+              {t("teams.enrollment.stepSyncBody")}
             </p>
           </div>
         </div>
 
         <div className="flex items-center justify-between border-t border-blue-50/60 dark:border-slate-800 pt-4 mt-2">
-          <span className="text-xs text-slatecopy dark:text-slate-400">Waiting for an enrollment link...</span>
+          <span className="text-xs text-slatecopy dark:text-slate-400">{t("teams.enrollment.waiting")}</span>
           <button
             type="button"
             className="btn btn-compact btn-secondary text-xs"
@@ -262,7 +256,7 @@ export function TeamEnrollmentSection({
             onClick={onRefreshStatus}
           >
             <RefreshIcon />
-            <span>Refresh Status</span>
+            <span>{t("teams.enrollment.refreshStatus")}</span>
           </button>
         </div>
       </section>
@@ -274,12 +268,10 @@ export function TeamEnrollmentSection({
         </div>
         <div className="flex-1 min-w-0">
           <strong className="block text-xs font-black uppercase tracking-wide text-emerald-950 dark:text-emerald-200">
-            Personal Content Isolation Guarantee
+            {t("teams.enrollment.isolation")}
           </strong>
           <p className="m-0 mt-0.5 text-xs text-emerald-800 leading-relaxed dark:text-emerald-300">
-            Your personal companions from the public catalog, Codex pets, and local developer
-            plugins reside in an isolated lane. Joining an organization will never overwrite,
-            modify, or delete any of your personal content.
+            {t("teams.enrollment.isolationBody")}
           </p>
         </div>
       </div>

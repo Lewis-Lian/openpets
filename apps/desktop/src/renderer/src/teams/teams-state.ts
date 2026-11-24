@@ -73,12 +73,12 @@ export function isEnrollmentActionable(
   return validateDisplayName(displayName).ok;
 }
 
-export function formatDate(isoString?: string): string {
-  if (!isoString) return "Never";
+export function formatDate(isoString?: string, locale?: string, fallback = "Never"): string {
+  if (!isoString) return fallback;
   try {
     const date = new Date(isoString);
-    if (isNaN(date.getTime())) return "Never";
-    return date.toLocaleString(undefined, {
+    if (isNaN(date.getTime())) return fallback;
+    return date.toLocaleString(locale, {
       month: "short",
       day: "numeric",
       year: "numeric",
@@ -86,7 +86,7 @@ export function formatDate(isoString?: string): string {
       minute: "2-digit",
     });
   } catch {
-    return "Never";
+    return fallback;
   }
 }
 
@@ -97,9 +97,13 @@ export type FormattedTeamsError = {
   readonly canRetry: boolean;
 };
 
-export function formatTeamsError(errorCodeOrMessage?: string): FormattedTeamsError | null {
+export function formatTeamsError(errorCodeOrMessage?: string, translate?: (key: string) => string): FormattedTeamsError | null {
   if (!errorCodeOrMessage) return null;
 
+  const localized = (key: string, fallback: string) => {
+    const translated = translate?.(key);
+    return translated && translated !== key ? translated : fallback;
+  };
   const normalized = errorCodeOrMessage.trim();
 
   if (
@@ -108,9 +112,8 @@ export function formatTeamsError(errorCodeOrMessage?: string): FormattedTeamsErr
     normalized.toLowerCase().includes("permission")
   ) {
     return {
-      title: "Permission Approval Required",
-      description:
-        "One or more team plugins require local permission approval. Review and approve requested permissions below to enable them on this machine.",
+      title: localized("teams.error.permission.title", "Permission Approval Required"),
+      description: localized("teams.error.permission.description", "One or more team plugins require local permission approval. Review and approve requested permissions below to enable them on this machine."),
       isPermissionBlock: true,
       canRetry: true,
     };
@@ -118,9 +121,8 @@ export function formatTeamsError(errorCodeOrMessage?: string): FormattedTeamsErr
 
   if (normalized === "secure_storage_unavailable") {
     return {
-      title: "Secure Storage Unavailable",
-      description:
-        "Teams device authentication requires secure system credential storage (such as OS Keychain or Secret Service), which is currently unavailable.",
+      title: localized("teams.error.storage.title", "Secure Storage Unavailable"),
+      description: localized("teams.error.storage.description", "Teams device authentication requires secure system credential storage (such as OS Keychain or Secret Service), which is currently unavailable."),
       isPermissionBlock: false,
       canRetry: true,
     };
@@ -128,9 +130,8 @@ export function formatTeamsError(errorCodeOrMessage?: string): FormattedTeamsErr
 
   if (normalized === "stage_failed") {
     return {
-      title: "Download & Verification Failed",
-      description:
-        "Unable to download or verify the latest Team Pack artifacts from the server. Check your network connection and try again.",
+      title: localized("teams.error.download.title", "Download & Verification Failed"),
+      description: localized("teams.error.download.description", "Unable to download or verify the latest Team Pack artifacts from the server. Check your network connection and try again."),
       isPermissionBlock: false,
       canRetry: true,
     };
@@ -138,9 +139,8 @@ export function formatTeamsError(errorCodeOrMessage?: string): FormattedTeamsErr
 
   if (normalized === "apply_failed") {
     return {
-      title: "Activation Failed",
-      description:
-        "Unable to activate team pets or plugins on this machine. An existing file or conflicting ID may be preventing installation.",
+      title: localized("teams.error.activation.title", "Activation Failed"),
+      description: localized("teams.error.activation.description", "Unable to activate team pets or plugins on this machine. An existing file or conflicting ID may be preventing installation."),
       isPermissionBlock: false,
       canRetry: true,
     };
@@ -148,9 +148,8 @@ export function formatTeamsError(errorCodeOrMessage?: string): FormattedTeamsErr
 
   if (normalized === "remove_failed") {
     return {
-      title: "Removal Failed",
-      description:
-        "Failed to cleanly remove retired team pets or plugins during synchronization.",
+      title: localized("teams.error.removal.title", "Removal Failed"),
+      description: localized("teams.error.removal.description", "Failed to cleanly remove retired team pets or plugins during synchronization."),
       isPermissionBlock: false,
       canRetry: true,
     };
@@ -158,9 +157,8 @@ export function formatTeamsError(errorCodeOrMessage?: string): FormattedTeamsErr
 
   if (normalized === "sync_failed") {
     return {
-      title: "Sync Failed",
-      description:
-        "Could not reach the Teams API server to fetch the latest organization configuration.",
+      title: localized("teams.error.sync.title", "Sync Failed"),
+      description: localized("teams.error.sync.description", "Could not reach the Teams API server to fetch the latest organization configuration."),
       isPermissionBlock: false,
       canRetry: true,
     };
@@ -168,16 +166,15 @@ export function formatTeamsError(errorCodeOrMessage?: string): FormattedTeamsErr
 
   if (normalized === "leave_failed") {
     return {
-      title: "Disconnection Warning",
-      description:
-        "Could not notify the remote Teams server when leaving. Local team pets and plugins have been removed.",
+      title: localized("teams.error.disconnect.title", "Disconnection Warning"),
+      description: localized("teams.error.disconnect.description", "Could not notify the remote Teams server when leaving. Local team pets and plugins have been removed."),
       isPermissionBlock: false,
       canRetry: false,
     };
   }
 
   return {
-    title: "Sync Issue",
+    title: localized("teams.error.generic.title", "Sync Issue"),
     description: normalized,
     isPermissionBlock: false,
     canRetry: true,
@@ -278,8 +275,12 @@ export function getPermissionLabel(permission: string, t?: (key: string) => stri
   return PERMISSION_LABELS[permission] || permission;
 }
 
-export function getPermissionDescription(permission: string): string {
-  return PERMISSION_DESCRIPTIONS[permission] || `Requests access to ${permission}`;
+export function getPermissionDescription(permission: string, translate?: (key: string) => string): string {
+  const fallback = PERMISSION_DESCRIPTIONS[permission] || `Requests access to ${permission}`;
+  if (!translate || !PERMISSION_DESCRIPTIONS[permission]) return fallback;
+  const key = `teams.permission.description.${permission}`;
+  const translated = translate(key);
+  return translated === key ? fallback : translated;
 }
 
 export function isSensitivePermission(permission: string): boolean {

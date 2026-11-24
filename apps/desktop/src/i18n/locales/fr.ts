@@ -79,7 +79,7 @@ export const fr: Partial<Messages> = {
   "tray.cancelVoiceListening": "Arrêter l’écoute du micro",
   "tray.cancelVoiceTranscription": "Annuler la transcription",
   "tray.openLogsFolder": "Ouvrir le dossier des journaux...",
-  "tray.quit": "Quitter OpenPets",
+  "tray.quit": "Quitter LeiwsPet",
 
   // --- Shared ---
   "common.latest": "dernière version",
@@ -183,7 +183,7 @@ export const fr: Partial<Messages> = {
 
   // --- Confinement / Screen Recording permission (main process) ---
   "confinement.screenPermission.title": "Autorisation d’enregistrement de l’écran requise",
-  "confinement.screenPermission.body": "OpenPets a besoin de l’accès à l’enregistrement de l’écran pour garder votre mascotte dans sa fenêtre. Cliquez pour ouvrir Réglages Système.",
+  "confinement.screenPermission.body": "LeiwsPet a besoin de l’accès à l’enregistrement de l’écran pour garder votre mascotte dans sa fenêtre. Cliquez pour ouvrir Réglages Système.",
 
   // --- Common (renderer, shared across views) ---
   "common.retry": "Réessayer",
@@ -228,7 +228,7 @@ export const fr: Partial<Messages> = {
 
   // --- App shell (renderer) ---
   "app.controlCenter": "Centre de contrôle",
-  "app.logo.alt": "OpenPets",
+  "app.logo.alt": "LeiwsPet",
 
   // --- Dashboard (renderer) ---
   "dashboard.loading": "Collecte des statistiques des compagnons...",
@@ -429,9 +429,9 @@ export const fr: Partial<Messages> = {
   "settings.launchers.error": "Impossible de modifier la liste. Vérifiez l’application choisie et réessayez.",
   "settings.launchers.pickerTitle": "Choisir une application",
   "settings.general.showOnLaunch.title": "Afficher la mascotte au démarrage",
-  "settings.general.showOnLaunch.description": "Garder OpenPets dans la zone de notification, mais masquer la mascotte jusqu’à ce que vous l’appeliez.",
+  "settings.general.showOnLaunch.description": "Garder LeiwsPet dans la zone de notification, mais masquer la mascotte jusqu’à ce que vous l’appeliez.",
   "settings.general.launchAtLogin.title": "Lancer à l’ouverture de session",
-  "settings.general.launchAtLogin.supported": "Lancer automatiquement OpenPets au démarrage de votre ordinateur.",
+  "settings.general.launchAtLogin.supported": "Lancer automatiquement LeiwsPet au démarrage de votre ordinateur.",
   "settings.general.launchAtLogin.unsupported": "Non pris en charge sur cette plateforme.",
   "settings.general.petScale.title": "Taille de la mascotte",
   "settings.general.petScale.description": "Ajustez la taille de la mascotte par défaut sur le bureau.",
@@ -844,7 +844,7 @@ export const fr: Partial<Messages> = {
   "plugins.developer.eyebrow": "Mode développeur",
   "plugins.developer.show": "Afficher",
   "plugins.developer.hide": "Masquer",
-  "plugins.developer.description": "Chargez le dossier d’un projet de plugin. OpenPets le valide, capture les fichiers déclarés, surveille le dossier et recharge le plugin après chaque modification.",
+  "plugins.developer.description": "Chargez le dossier d’un projet de plugin. LeiwsPet le valide, capture les fichiers déclarés, surveille le dossier et recharge le plugin après chaque modification.",
   "plugins.developer.loadUnpacked": "Charger un dossier",
   "plugins.footer.installed": "installés",
   "plugins.footer.catalog": "dans le catalogue",
@@ -1087,7 +1087,7 @@ export const fr: Partial<Messages> = {
 
   // --- Settings: Language section (renderer) ---
   "settings.language.title": "Langue",
-  "settings.language.description": "Langue d’affichage des menus et fenêtres d’OpenPets.",
+  "settings.language.description": "Langue d’affichage des menus et fenêtres d’LeiwsPet.",
   "settings.language.system": "Langue du système",
 
   // --- Manager Check-ins (renderer) ---
@@ -1380,8 +1380,8 @@ export const fr: Partial<Messages> = {
   "settings.voiceDevices.outputLoading": "Détection des périphériques de sortie audio...",
   "settings.voiceDevices.inputUnavailableTitle": "Entrée micro indisponible",
   "settings.voiceDevices.inputUnavailableBody": "Impossible de charger les périphériques d’entrée audio. Cliquez sur « Actualiser les périphériques » pour relancer la détection.",
-  "settings.voiceDevices.inputDisconnectedNotice": "Le micro sélectionné est déconnecté. OpenPets utilise temporairement le périphérique par défaut du système.",
-  "settings.voiceDevices.outputDisconnectedNotice": "Le haut-parleur sélectionné est déconnecté. OpenPets lit temporairement l’audio via le périphérique par défaut du système.",
+  "settings.voiceDevices.inputDisconnectedNotice": "Le micro sélectionné est déconnecté. LeiwsPet utilise temporairement le périphérique par défaut du système.",
+  "settings.voiceDevices.outputDisconnectedNotice": "Le haut-parleur sélectionné est déconnecté. LeiwsPet lit temporairement l’audio via le périphérique par défaut du système.",
   "settings.voiceDevices.outputUnsupportedTitle": "Choix du haut-parleur non pris en charge",
   "settings.voiceDevices.outputUnsupportedBody": "Cette plateforme ou cet environnement d’exécution ne prend pas en charge le routage personnalisé de la sortie audio. L’audio du compagnon est lu via le périphérique par défaut de votre système d’exploitation.",
   "settings.voiceDevices.outputUnavailableTitle": "Sortie haut-parleur indisponible",
@@ -1393,7 +1393,7 @@ export const fr: Partial<Messages> = {
   "settings.voiceDevices.inputEmpty": "Aucune entrée micro détectée.",
   "settings.voiceDevices.outputEmpty": "Aucune sortie haut-parleur détectée.",
   "settings.voiceDevices.inputNote": "Les modifications s’appliquent à la prochaine conversation vocale ou au prochain test de transcription. Les enregistrements en cours ne sont jamais interrompus.",
-  "settings.voiceDevices.outputNote": "La sortie sélectionnée s’applique à la voix générée par OpenPets, à l’audio en temps réel et aux aperçus. Le TTS système suit le périphérique de sortie du système d’exploitation.",
+  "settings.voiceDevices.outputNote": "La sortie sélectionnée s’applique à la voix générée par LeiwsPet, à l’audio en temps réel et aux aperçus. Le TTS système suit le périphérique de sortie du système d’exploitation.",
   "settings.voiceDevices.footerNote": "Les préférences des périphériques audio sont enregistrées sur cet ordinateur et appliquées automatiquement aux sessions vocales suivantes.",
   "settings.voiceDevices.busy.saving": "Enregistrement de la préférence de périphérique audio...",
   "settings.voiceDevices.toast.inputSaved": "Préférence de micro enregistrée.",

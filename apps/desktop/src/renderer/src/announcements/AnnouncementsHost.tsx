@@ -1,3 +1,4 @@
+import { useI18n } from "../i18n.js";
 import React, { useEffect, useRef, useState } from "react";
 import type { AnnouncementSnapshot } from "../../../announcements-contract.js";
 import { AnnouncementsModal } from "./AnnouncementsModal.js";
@@ -23,6 +24,7 @@ export function AnnouncementsHost({
   api: AnnouncementsApi;
   whatsNewSettled: boolean;
 }) {
+  const { t } = useI18n();
   const [snapshot, setSnapshot] = useState<AnnouncementSnapshot | null>(null);
   const [openId, setOpenId] = useState<string | null>(null);
   const [isBusy, setIsBusy] = useState(false);
@@ -149,7 +151,7 @@ export function AnnouncementsHost({
       />
 
       {whatsNewSettled && !isOpen && (
-        <aside aria-label="Special Event Campaign" className="announcement-reopen-banner-wrap">
+        <aside aria-label={t("announcements.campaign")} className="announcement-reopen-banner-wrap">
           <div className={`announcement-reopen-banner theme-${announcement.theme}`}>
             <div className="announcement-reopen-content">
               <span className="announcement-reopen-badge">✨ {announcement.eyebrow}</span>
@@ -164,7 +166,7 @@ export function AnnouncementsHost({
                   setOpenId(announcement.id);
                 }}
               >
-                See what’s new
+                {t("announcements.seeWhatsNew")}
               </button>
             </div>
           </div>

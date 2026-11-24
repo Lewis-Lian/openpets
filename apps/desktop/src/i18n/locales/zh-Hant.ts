@@ -75,7 +75,7 @@ export const zhHant: Partial<Messages> = {
   "tray.plugins": "外掛...",
   "tray.settings": "設定...",
   "tray.openLogsFolder": "開啟日誌資料夾...",
-  "tray.quit": "結束 OpenPets",
+  "tray.quit": "結束 LeiwsPet",
 
   // --- Shared ---
   "common.latest": "最新",
@@ -219,7 +219,7 @@ export const zhHant: Partial<Messages> = {
 
   // --- App shell (renderer) ---
   "app.controlCenter": "控制中心",
-  "app.logo.alt": "OpenPets",
+  "app.logo.alt": "LeiwsPet",
 
   // --- Dashboard (renderer) ---
   "dashboard.loading": "正在蒐集夥伴指標...",
@@ -421,9 +421,9 @@ export const zhHant: Partial<Messages> = {
   "settings.launchers.error": "無法更新應用程式啟動器。請檢查所選應用程式後再試一次。",
   "settings.launchers.pickerTitle": "選擇應用程式",
   "settings.general.showOnLaunch.title": "啟動時顯示寵物",
-  "settings.general.showOnLaunch.description": "將 OpenPets 保留在工作列，但在需要時才顯示寵物。",
+  "settings.general.showOnLaunch.description": "將 LeiwsPet 保留在工作列，但在需要時才顯示寵物。",
   "settings.general.launchAtLogin.title": "登入時啟動",
-  "settings.general.launchAtLogin.supported": "在電腦開機時自動啟動 OpenPets。",
+  "settings.general.launchAtLogin.supported": "在電腦開機時自動啟動 LeiwsPet。",
   "settings.general.launchAtLogin.unsupported": "此平台不支援。",
   "settings.general.petScale.title": "寵物大小",
   "settings.general.petScale.description": "調整預設桌面寵物的顯示大小。",
@@ -928,7 +928,7 @@ export const zhHant: Partial<Messages> = {
 
   // --- Settings: Language section (renderer) ---
   "settings.language.title": "語言",
-  "settings.language.description": "OpenPets 選單與視窗的顯示語言。",
+  "settings.language.description": "LeiwsPet 選單與視窗的顯示語言。",
   "settings.language.system": "跟隨系統",
 
   // --- Manager Check-ins (renderer) ---
@@ -1195,8 +1195,8 @@ export const zhHant: Partial<Messages> = {
   "settings.voiceDevices.outputLoading": "正在偵測音訊輸出裝置...",
   "settings.voiceDevices.inputUnavailableTitle": "麥克風輸入無法使用",
   "settings.voiceDevices.inputUnavailableBody": "無法載入麥克風裝置資訊。請點選「重新整理裝置」重試偵測。",
-  "settings.voiceDevices.inputDisconnectedNotice": "所選麥克风已中斷連線。OpenPets 正暫時使用系統預設麥克風。",
-  "settings.voiceDevices.outputDisconnectedNotice": "所選揚聲器已中斷連線。OpenPets 正暫時使用系統預設揚聲器。",
+  "settings.voiceDevices.inputDisconnectedNotice": "所選麥克风已中斷連線。LeiwsPet 正暫時使用系統預設麥克風。",
+  "settings.voiceDevices.outputDisconnectedNotice": "所選揚聲器已中斷連線。LeiwsPet 正暫時使用系統預設揚聲器。",
   "settings.voiceDevices.outputUnsupportedTitle": "目前環境不支援自訂揚聲器選取",
   "settings.voiceDevices.outputUnsupportedBody": "目前作業系統或執行階段不支援音訊輸出路由。聲音將透過系統預設裝置播放。",
   "settings.voiceDevices.outputUnavailableTitle": "揚聲器輸出無法使用",

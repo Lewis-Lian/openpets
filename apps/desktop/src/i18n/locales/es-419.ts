@@ -75,7 +75,7 @@ export const es419: Partial<Messages> = {
   "tray.plugins": "Complementos...",
   "tray.settings": "Configuración...",
   "tray.openLogsFolder": "Abrir carpeta de registros...",
-  "tray.quit": "Salir de OpenPets",
+  "tray.quit": "Salir de LeiwsPet",
 
   // --- Shared ---
   "common.latest": "más reciente",
@@ -219,7 +219,7 @@ export const es419: Partial<Messages> = {
 
   // --- App shell (renderer) ---
   "app.controlCenter": "Centro de control",
-  "app.logo.alt": "OpenPets",
+  "app.logo.alt": "LeiwsPet",
 
   // --- Dashboard (renderer) ---
   "dashboard.loading": "Recopilando métricas del compañero...",
@@ -421,9 +421,9 @@ export const es419: Partial<Messages> = {
   "settings.launchers.error": "No se pudo actualizar la lista. Revisa la aplicación seleccionada e inténtalo de nuevo.",
   "settings.launchers.pickerTitle": "Elegir una aplicación",
   "settings.general.showOnLaunch.title": "Mostrar la mascota al iniciar",
-  "settings.general.showOnLaunch.description": "Mantén OpenPets en la bandeja pero oculta la mascota hasta que la solicites.",
+  "settings.general.showOnLaunch.description": "Mantén LeiwsPet en la bandeja pero oculta la mascota hasta que la solicites.",
   "settings.general.launchAtLogin.title": "Iniciar al iniciar sesión",
-  "settings.general.launchAtLogin.supported": "Inicia OpenPets automáticamente cuando se enciende tu computadora.",
+  "settings.general.launchAtLogin.supported": "Inicia LeiwsPet automáticamente cuando se enciende tu computadora.",
   "settings.general.launchAtLogin.unsupported": "No es compatible con esta plataforma.",
   "settings.general.petScale.title": "Escala de la mascota",
   "settings.general.petScale.description": "Ajusta el tamaño con el que aparece la mascota de escritorio predeterminada.",
@@ -928,7 +928,7 @@ export const es419: Partial<Messages> = {
 
   // --- Settings: Language section (renderer) ---
   "settings.language.title": "Idioma",
-  "settings.language.description": "Idioma de visualización de los menús y ventanas de OpenPets.",
+  "settings.language.description": "Idioma de visualización de los menús y ventanas de LeiwsPet.",
   "settings.language.system": "Predeterminado del sistema",
 
   // --- Manager Check-ins (renderer) ---
@@ -1195,8 +1195,8 @@ export const es419: Partial<Messages> = {
   "settings.voiceDevices.outputLoading": "Detectando dispositivos de salida de audio...",
   "settings.voiceDevices.inputUnavailableTitle": "Entrada de micrófono no disponible",
   "settings.voiceDevices.inputUnavailableBody": "No se pudieron cargar los dispositivos de entrada de audio. Haz clic en Actualizar dispositivos para reintentar.",
-  "settings.voiceDevices.inputDisconnectedNotice": "El micrófono seleccionado está desconectado. OpenPets está usando temporalmente el predeterminado del sistema.",
-  "settings.voiceDevices.outputDisconnectedNotice": "El altavoz seleccionado está desconectado. OpenPets está usando temporalmente el predeterminado del sistema.",
+  "settings.voiceDevices.inputDisconnectedNotice": "El micrófono seleccionado está desconectado. LeiwsPet está usando temporalmente el predeterminado del sistema.",
+  "settings.voiceDevices.outputDisconnectedNotice": "El altavoz seleccionado está desconectado. LeiwsPet está usando temporalmente el predeterminado del sistema.",
   "settings.voiceDevices.outputUnsupportedTitle": "Selección personalizada de altavoces no compatible",
   "settings.voiceDevices.outputUnsupportedBody": "Este sistema operativo o entorno de ejecución no admite el enrutamiento de salida de audio. El audio se reproducirá a través del dispositivo predeterminado del sistema.",
   "settings.voiceDevices.outputUnavailableTitle": "Salida de altavoz no disponible",
@@ -1208,7 +1208,7 @@ export const es419: Partial<Messages> = {
   "settings.voiceDevices.inputEmpty": "No se detectaron micrófonos disponibles.",
   "settings.voiceDevices.outputEmpty": "No se detectaron altavoces disponibles.",
   "settings.voiceDevices.inputNote": "Los cambios se aplican en la próxima sesión de Talk o prueba de transcripción. Las grabaciones en curso nunca se interrumpen.",
-  "settings.voiceDevices.outputNote": "La salida seleccionada se aplica a la voz generada de OpenPets, audio en tiempo real y vistas previas. El TTS del sistema sigue el dispositivo de salida del SO.",
+  "settings.voiceDevices.outputNote": "La salida seleccionada se aplica a la voz generada de LeiwsPet, audio en tiempo real y vistas previas. El TTS del sistema sigue el dispositivo de salida del SO.",
   "settings.voiceDevices.footerNote": "Las preferencias de dispositivos se guardan localmente en esta computadora y se aplican automáticamente en la próxima sesión.",
   "settings.voiceDevices.busy.saving": "Guardando preferencia de dispositivo de audio...",
   "settings.voiceDevices.toast.inputSaved": "Preferencia de micrófono guardada.",

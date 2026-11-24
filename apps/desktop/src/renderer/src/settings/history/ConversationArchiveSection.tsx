@@ -234,7 +234,7 @@ export function ConversationArchiveSection({
             className="plugin-config-backdrop"
             onClick={() => !clearing && setShowClearConfirm(false)}
             tabIndex={-1}
-            aria-label="Close"
+            aria-label={t("common.close")}
           />
           <div className="plugin-inspector max-w-lg bg-white p-6 dark:bg-slate-900 rounded-3xl border border-blue-200 shadow-2xl dark:border-slate-800">
             <h3 id="archive-clear-title" className="m-0 font-monoDisplay text-xl font-black text-navy dark:text-white">
@@ -293,7 +293,7 @@ export function ConversationArchiveSection({
         {loading ? (
           <div className="flex flex-col items-center justify-center p-12 text-slatecopy text-sm font-semibold">
             <div className="h-6 w-6 animate-spin rounded-full border-2 border-brand border-t-transparent mb-3" />
-            Loading archive...
+            {t("settings.history.loading")}
           </div>
         ) : filteredMessages.length === 0 ? (
           <div className="flex flex-col items-center justify-center gap-3 p-12 text-center text-slatecopy">
@@ -302,12 +302,12 @@ export function ConversationArchiveSection({
               <strong className="block text-sm font-bold text-navy dark:text-white">
                 {messages.length === 0
                   ? (t("settings.archive.empty.title") || "No archived messages")
-                  : "No matching messages found"}
+                  : t("settings.history.noMatches")}
               </strong>
               <p className="m-0 mt-1 max-w-sm text-xs leading-relaxed">
                 {messages.length === 0
                   ? (t("settings.archive.empty.description") || "Terminal user and assistant messages from your companion conversations will be persisted here automatically.")
-                  : "Try changing your search term to see other archived messages."}
+                  : t("settings.history.searchAgain")}
               </p>
             </div>
           </div>
@@ -337,7 +337,7 @@ export function ConversationArchiveSection({
                           : (t("settings.archive.assistant") || "Assistant")}
                       </span>
                       <span className="font-mono text-[10px] text-slatecopy/70 bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
-                        turn:{message.turnId.slice(0, 8)}
+                        {t("settings.history.turn", { id: message.turnId.slice(0, 8) })}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">

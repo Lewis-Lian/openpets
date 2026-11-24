@@ -786,7 +786,7 @@ export function openControlCenterWindowTarget(target: ControlCenterRouteTarget):
   // area so the window never spawns larger than small laptop screens.
   const { workAreaSize } = screen.getPrimaryDisplay();
   const window = new BrowserWindow({
-    title: "OpenPets — Control Center",
+    title: `${app.getName()} — ${t("app.controlCenter")}`,
     width: Math.min(1020, Math.floor(workAreaSize.width * 0.9)),
     height: Math.min(1000, Math.floor(workAreaSize.height * 0.9)),
     minWidth: 820,

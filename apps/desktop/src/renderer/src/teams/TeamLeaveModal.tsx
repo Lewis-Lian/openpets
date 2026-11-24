@@ -1,3 +1,4 @@
+import { useI18n } from "../i18n.js";
 import { CloseIcon, LogOutIcon } from "./teams-icons.js";
 
 export type TeamLeaveModalProps = {
@@ -19,6 +20,7 @@ export function TeamLeaveModal({
   onClose,
   onConfirm,
 }: TeamLeaveModalProps) {
+  const { t } = useI18n();
   if (!isOpen) return null;
 
   const isBusy = Boolean(busy);
@@ -28,12 +30,12 @@ export function TeamLeaveModal({
       className="plugin-config-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label="Confirm Leave Organization"
+      aria-label={t("teams.leave.confirm")}
     >
       <button
         className="plugin-config-backdrop"
         type="button"
-        aria-label="Close dialog"
+        aria-label={t("common.close")}
         onClick={() => !isBusy && onClose()}
       />
       <div className="team-modal">
@@ -43,7 +45,7 @@ export function TeamLeaveModal({
               <LogOutIcon />
             </div>
             <h3 className="m-0 font-monoDisplay text-xl font-black text-navy dark:text-slate-100">
-              Leave Organization?
+              {t("teams.leave.title")}
             </h3>
           </div>
           <button
@@ -51,29 +53,25 @@ export function TeamLeaveModal({
             className="text-slatecopy hover:text-navy dark:hover:text-slate-100 cursor-pointer p-1"
             disabled={isBusy}
             onClick={onClose}
-            aria-label="Close"
+            aria-label={t("common.close")}
           >
             <CloseIcon />
           </button>
         </div>
 
         <p className="m-0 text-xs text-slatecopy leading-relaxed">
-          Are you sure you want to disconnect this computer from{" "}
-          <strong className="text-navy dark:text-slate-100">{organizationName}</strong>?
+          {t("teams.leave.question", { organization: organizationName })}
         </p>
 
         <div className="rounded-xl border border-red-100 bg-red-50/50 dark:bg-red-950/30 dark:border-red-900/50 p-3 text-xs text-red-900 dark:text-red-300 leading-relaxed">
           <ul className="m-0 pl-4 list-disc space-y-1">
             <li>
-              All <strong>{teamPetsCount} team pets</strong> and{" "}
-              <strong>{teamPluginsCount} team plugins</strong> will be cleanly removed from this
-              machine.
+              {t("teams.leave.removeAssets", { pets: teamPetsCount, plugins: teamPluginsCount })}
             </li>
             <li>
-              Your personal catalog pets, Codex pets, and local developer plugins will{" "}
-              <strong>not</strong> be affected.
+              {t("teams.leave.personalContent")}
             </li>
-            <li>You can re-enroll at any time with a new invitation link.</li>
+            <li>{t("teams.leave.rejoin")}</li>
           </ul>
         </div>
 
@@ -84,7 +82,7 @@ export function TeamLeaveModal({
             disabled={isBusy}
             onClick={onClose}
           >
-            Cancel
+            {t("common.cancel")}
           </button>
           <button
             type="button"
@@ -92,7 +90,7 @@ export function TeamLeaveModal({
             disabled={isBusy}
             onClick={onConfirm}
           >
-            {busy ? "Leaving..." : "Yes, Leave Organization"}
+            {busy ? t("teams.leave.leaving") : t("teams.leave.accept")}
           </button>
         </div>
       </div>

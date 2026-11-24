@@ -1,6 +1,6 @@
 appId: dev.openpets.app.pixelduo
-productName: OpenPets Pixel Duo
-executableName: openpets-pixel-duo
+productName: LeiwsPet
+executableName: leiwspet
 protocols:
   - name: OpenPets Teams enrollment
     schemes:
@@ -10,7 +10,7 @@ copyright: Copyright © 2026 OpenPets
 directories:
   output: dist-electron
 
-artifactName: OpenPets-Pixel-Duo-${version}-${os}-${arch}.${ext}
+artifactName: LeiwsPet-${version}-${os}-${arch}.${ext}
 
 files:
   - dist/**
@@ -42,7 +42,7 @@ mac:
   icon: assets/app-icon.icns
   category: public.app-category.utilities
   extendInfo:
-    NSMicrophoneUsageDescription: OpenPets uses your microphone only for user-initiated one-shot input and realtime voice conversations.
+    NSMicrophoneUsageDescription: LeiwsPet uses your microphone only for user-initiated one-shot input and realtime voice conversations.
   target:
     - dmg
     - zip
@@ -63,10 +63,10 @@ win:
 portable:
   useZip: true
   splashImage: build/pixel-duo-startup.bmp
-  artifactName: OpenPets-Pixel-Duo-${version}-win-${arch}-portable.${ext}
+  artifactName: LeiwsPet-${version}-win-${arch}-portable.${ext}
 
 nsis:
-  artifactName: OpenPets-Pixel-Duo-${version}-win-${arch}-setup.${ext}
+  artifactName: LeiwsPet-${version}-win-${arch}-setup.${ext}
   oneClick: false
   perMachine: false
   allowToChangeInstallationDirectory: true

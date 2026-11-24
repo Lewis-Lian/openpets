@@ -533,7 +533,7 @@ export function ProviderModal({
       <button
         className="plugin-config-backdrop"
         type="button"
-        aria-label="Close dialog"
+        aria-label={t("common.close")}
         onClick={() => !Boolean(busy) && !isSaving && void handleClose()}
       />
       <div className="relative z-10 flex max-h-[calc(100vh-4rem)] w-[min(640px,calc(100vw-3rem))] flex-col gap-4 rounded-[28px] border border-blue-100/80 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 shadow-2xl overflow-y-auto">
@@ -559,7 +559,7 @@ export function ProviderModal({
             className="text-slatecopy hover:text-navy dark:hover:text-slate-100 cursor-pointer p-1"
             disabled={Boolean(busy) || isSaving}
             onClick={() => void handleClose()}
-            aria-label="Close"
+            aria-label={t("common.close")}
           >
             <CloseIcon />
           </button>

@@ -79,7 +79,7 @@ export const ru: Partial<Messages> = {
   "tray.cancelVoiceListening": "Остановить прослушивание микрофона",
   "tray.cancelVoiceTranscription": "Отменить расшифровку",
   "tray.openLogsFolder": "Открыть папку журналов...",
-  "tray.quit": "Завершить OpenPets",
+  "tray.quit": "Завершить LeiwsPet",
 
   // --- Shared ---
   "common.latest": "последняя",
@@ -183,7 +183,7 @@ export const ru: Partial<Messages> = {
 
   // --- Confinement / Screen Recording permission (main process) ---
   "confinement.screenPermission.title": "Нужно разрешение на запись экрана",
-  "confinement.screenPermission.body": "OpenPets нужен доступ к записи экрана, чтобы держать питомца внутри его окна. Нажмите, чтобы открыть «Настройки системы».",
+  "confinement.screenPermission.body": "LeiwsPet нужен доступ к записи экрана, чтобы держать питомца внутри его окна. Нажмите, чтобы открыть «Настройки системы».",
 
   // --- Common (renderer, shared across views) ---
   "common.retry": "Повторить",
@@ -228,7 +228,7 @@ export const ru: Partial<Messages> = {
 
   // --- App shell (renderer) ---
   "app.controlCenter": "Центр управления",
-  "app.logo.alt": "OpenPets",
+  "app.logo.alt": "LeiwsPet",
 
   // --- Dashboard (renderer) ---
   "dashboard.loading": "Собираю метрики компаньонов...",
@@ -455,9 +455,9 @@ export const ru: Partial<Messages> = {
   "settings.launchers.error": "Не удалось обновить список. Проверьте выбранное приложение и повторите попытку.",
   "settings.launchers.pickerTitle": "Выберите приложение",
   "settings.general.showOnLaunch.title": "Показывать питомца при запуске",
-  "settings.general.showOnLaunch.description": "OpenPets остаётся в трее, а питомец скрыт, пока его не попросят.",
+  "settings.general.showOnLaunch.description": "LeiwsPet остаётся в трее, а питомец скрыт, пока его не попросят.",
   "settings.general.launchAtLogin.title": "Запускать при входе",
-  "settings.general.launchAtLogin.supported": "Запускать OpenPets автоматически при старте компьютера.",
+  "settings.general.launchAtLogin.supported": "Запускать LeiwsPet автоматически при старте компьютера.",
   "settings.general.launchAtLogin.unsupported": "Не поддерживается на этой платформе.",
   "settings.general.petScale.title": "Масштаб питомца",
   "settings.general.petScale.description": "Насколько большим выглядит питомец рабочего стола по умолчанию.",
@@ -870,7 +870,7 @@ export const ru: Partial<Messages> = {
   "plugins.developer.eyebrow": "Режим разработчика",
   "plugins.developer.show": "Показать",
   "plugins.developer.hide": "Скрыть",
-  "plugins.developer.description": "Загрузите папку проекта плагина. OpenPets проверит её, снимет копию объявленных файлов, будет следить за папкой и перезагрузит плагин после правок.",
+  "plugins.developer.description": "Загрузите папку проекта плагина. LeiwsPet проверит её, снимет копию объявленных файлов, будет следить за папкой и перезагрузит плагин после правок.",
   "plugins.developer.loadUnpacked": "Загрузить папку",
   "plugins.footer.installed": "установлено",
   "plugins.footer.catalog": "каталог",
@@ -1113,7 +1113,7 @@ export const ru: Partial<Messages> = {
 
   // --- Settings: Language section (renderer) ---
   "settings.language.title": "Язык",
-  "settings.language.description": "Язык меню и окон OpenPets.",
+  "settings.language.description": "Язык меню и окон LeiwsPet.",
   "settings.language.system": "Как в системе",
 
   // --- Manager Check-ins (renderer) ---
@@ -1406,8 +1406,8 @@ export const ru: Partial<Messages> = {
   "settings.voiceDevices.outputLoading": "Определяю устройства вывода звука...",
   "settings.voiceDevices.inputUnavailableTitle": "Вход микрофона недоступен",
   "settings.voiceDevices.inputUnavailableBody": "Не удалось загрузить устройства ввода звука. Нажмите «Обновить устройства», чтобы повторить определение.",
-  "settings.voiceDevices.inputDisconnectedNotice": "Выбранный микрофон отключён. OpenPets временно использует системное устройство по умолчанию.",
-  "settings.voiceDevices.outputDisconnectedNotice": "Выбранные динамики отключены. OpenPets временно воспроизводит звук через системное устройство по умолчанию.",
+  "settings.voiceDevices.inputDisconnectedNotice": "Выбранный микрофон отключён. LeiwsPet временно использует системное устройство по умолчанию.",
+  "settings.voiceDevices.outputDisconnectedNotice": "Выбранные динамики отключены. LeiwsPet временно воспроизводит звук через системное устройство по умолчанию.",
   "settings.voiceDevices.outputUnsupportedTitle": "Свой выбор динамиков не поддерживается",
   "settings.voiceDevices.outputUnsupportedBody": "Эта платформа или среда выполнения не поддерживает маршрутизацию звука на выбранное устройство. Аудио компаньона играет через устройство по умолчанию ОС.",
   "settings.voiceDevices.outputUnavailableTitle": "Выход на динамики недоступен",
@@ -1419,7 +1419,7 @@ export const ru: Partial<Messages> = {
   "settings.voiceDevices.inputEmpty": "Входы микрофона не обнаружены.",
   "settings.voiceDevices.outputEmpty": "Устройства вывода звука не обнаружены.",
   "settings.voiceDevices.inputNote": "Изменения применяются к следующей сессии разговора или проверке расшифровки. Активные записи не прерываются.",
-  "settings.voiceDevices.outputNote": "Выбранный выход применяется к синтезированному голосу OpenPets, аудио realtime и предпросмотрам. Системный TTS следует устройству вывода ОС.",
+  "settings.voiceDevices.outputNote": "Выбранный выход применяется к синтезированному голосу LeiwsPet, аудио realtime и предпросмотрам. Системный TTS следует устройству вывода ОС.",
   "settings.voiceDevices.footerNote": "Настройки аудиоустройств сохраняются на этом компьютере и автоматически применяются к последующим голосовым сессиям.",
   "settings.voiceDevices.busy.saving": "Сохраняю настройку аудиоустройства...",
   "settings.voiceDevices.toast.inputSaved": "Настройка микрофона сохранена.",

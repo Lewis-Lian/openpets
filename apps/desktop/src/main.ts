@@ -56,7 +56,12 @@ import { markOutfitRefresh, suspendPetBodies } from "./pet-window.js";
 import { setPetWardrobeChangeHandler } from "./pet-wardrobe.js";
 import { refreshPetWindowsForPetId } from "./pet-window-refresh.js";
 
-app.setName("OpenPets Pixel Duo");
+app.setName("LeiwsPet");
+// Reuse the earlier branded build's profile so an upgrade keeps pets and preferences.
+const legacyProfile = join(app.getPath("appData"), "OpenPets Pixel Duo");
+if (existsSync(legacyProfile)) {
+  app.setPath("userData", legacyProfile);
+}
 
 let teamService: TeamService | null = null;
 let managerCheckInService: ManagerCheckInService | null = null;
