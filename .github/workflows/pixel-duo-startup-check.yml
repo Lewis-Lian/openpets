@@ -1,0 +1,69 @@
+name: Measure Pixel Duo startup
+on:
+  push:
+    branches: [pixel-duo-startup-check]
+permissions:
+  actions: read
+  contents: read
+jobs:
+  measure:
+    runs-on: windows-2025
+    timeout-minutes: 12
+    steps:
+      - name: Download the Windows build being diagnosed
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 45339225554
+          name: pixel-duo-windows-x64
+          path: original
+      - name: Time the original portable launcher
+        shell: pwsh
+        run: |
+          $exe = (Resolve-Path 'original/OpenPets-Pixel-Duo-4.1.0-win-x64.exe').Path
+          $timer = [Diagnostics.Stopwatch]::StartNew()
+          $launcher = Start-Process -FilePath $exe -PassThru
+          $foundProcess = $false
+          $sawLogger = $false
+          $sawWindow = $false
+          $log = $null
+          try {
+            while ($timer.Elapsed.TotalSeconds -lt 150) {
+              if (!$foundProcess -and (Get-Process -Name 'openpets-pixel-duo' -ErrorAction SilentlyContinue)) {
+                $foundProcess = $true
+                Write-Host ('Electron process started at {0:n1}s' -f $timer.Elapsed.TotalSeconds)
+              }
+              if (!$log) {
+                $log = Get-ChildItem $env:APPDATA -Directory |
+                  Where-Object Name -Match 'open.?pets' |
+                  ForEach-Object { Join-Path $_.FullName 'logs/openpets.log' } |
+                  Where-Object { Test-Path -LiteralPath $_ } |
+                  Select-Object -First 1
+              }
+              if ($log) {
+                $lines = Get-Content -LiteralPath $log
+                if (!$sawLogger -and ($lines -match 'startup begin')) {
+                  $sawLogger = $true
+                  Write-Host ('OpenPets startup began at {0:n1}s' -f $timer.Elapsed.TotalSeconds)
+                }
+                if ($lines -match 'load file complete') {
+                  $sawWindow = $true
+                  Write-Host ('Pet window HTML loaded at {0:n1}s' -f $timer.Elapsed.TotalSeconds)
+                  $lines | Select-String 'startup begin|default window create|show requested|load file complete|startup complete' | ForEach-Object { $_.Line }
+                  break
+                }
+                if ($lines -match 'startup failed|renderer process gone') {
+                  $lines | Select-String 'startup failed|renderer process gone' | ForEach-Object { $_.Line }
+                  break
+                }
+              }
+              if ($launcher.HasExited -and !$foundProcess) {
+                throw "Portable launcher exited before Electron started. Exit code: $($launcher.ExitCode)."
+              }
+              Start-Sleep -Milliseconds 300
+            }
+            if (!$sawWindow) { throw 'The default pet window did not finish loading.' }
+          } finally {
+            Get-Process -Name 'openpets-pixel-duo' -ErrorAction SilentlyContinue | Stop-Process -Force
+            if (!$launcher.HasExited) { Wait-Process -Id $launcher.Id -Timeout 10 -ErrorAction SilentlyContinue }
+          }
