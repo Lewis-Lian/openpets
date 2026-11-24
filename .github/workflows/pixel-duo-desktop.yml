@@ -71,6 +71,14 @@ jobs:
       - name: Verify packaged default pet
         run: pnpm --dir apps/desktop exec node scripts/check-pixel-duo-package.cjs
 
+      - name: Smoke-test portable startup on Windows
+        if: matrix.platform == 'win32'
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem apps/desktop/dist-electron -Filter '*-portable.exe' | Select-Object -First 1
+          if (!$exe) { throw 'Portable executable is missing.' }
+          & apps/desktop/scripts/check-pixel-duo-startup.ps1 -Executable $exe.FullName
+
       - name: Upload installers
         uses: actions/upload-artifact@v4
         with:

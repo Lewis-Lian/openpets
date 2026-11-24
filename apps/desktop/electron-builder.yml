@@ -60,6 +60,11 @@ win:
     - portable
   verifyUpdateCodeSignature: false
 
+portable:
+  useZip: true
+  splashImage: build/pixel-duo-startup.bmp
+  artifactName: OpenPets-Pixel-Duo-${version}-win-${arch}-portable.${ext}
+
 nsis:
   artifactName: OpenPets-Pixel-Duo-${version}-win-${arch}-setup.${ext}
   oneClick: false
