@@ -117,8 +117,8 @@ function syncDockVisibilityForInternalUi(): void {
 
 function getSettingsStateSnapshot(): {
   preferences: Pick<ReturnType<typeof getAppStateSnapshot>["preferences"], "openDefaultPetOnLaunch" | "appearanceTheme" | "petScale" | "hudScale" | "bubbleScale" | "bubbleDurationScale" | "bubbleTheme" | "waitingAnimationDurationMs" | "idleCursorGazeEnabled" | "reactionAnimationOverrides" | "petPoolOrder" | "petPoolEnabled" | "pinnedPets" | "petConfinementEnabled" | "petCrossDisplayEnabled" | "petGravityEnabled" | "petBounciness" | "petFloorFriction" | "personality" | "voiceAssistantShortcut" | "chatShortcut" | "petToggleShortcut" | "showChatButton" | "showTalkButton" | "petButtonsPosition" | "petButtonsSize">;
-  petScaleOptions: typeof petScaleOptions;
-  hudScaleOptions: typeof hudScaleOptions;
+  petScaleOptions: readonly { value: number; label: string }[];
+  hudScaleOptions: readonly { value: number; label: string }[];
   bubbleScaleOptions: typeof bubbleScaleOptions;
   bubbleDurationScaleOptions: typeof bubbleDurationScaleOptions;
   /** Non-broken, non-built-in installed pets available for pool selection. */
@@ -159,8 +159,8 @@ function getSettingsStateSnapshot(): {
       petButtonsPosition: state.preferences.petButtonsPosition,
       petButtonsSize: state.preferences.petButtonsSize,
     },
-    petScaleOptions,
-    hudScaleOptions,
+    petScaleOptions: petScaleOptions.map((petScaleOption) => ({ value: petScaleOption.value, label: t(petScaleOption.labelKey) })),
+    hudScaleOptions: hudScaleOptions.map((hudScaleOption) => ({ value: hudScaleOption.value, label: t(hudScaleOption.labelKey) })),
     bubbleScaleOptions,
     bubbleDurationScaleOptions,
     petPoolCandidates: state.pets.installed

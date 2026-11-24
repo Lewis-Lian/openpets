@@ -4516,7 +4516,7 @@ function ControlCenter({ onAppearanceThemeChange }: { onAppearanceThemeChange: (
                     </div>
                     <div className="meta">
                       {defaultId === selected.id && <StatusPill tone="green">{t("pets.badge.default")}</StatusPill>}
-                      {selected.format === "motion" ? <StatusPill tone="purple">Motion</StatusPill> : <StatusPill tone="blue">Classic</StatusPill>}
+                      {selected.format === "motion" ? <StatusPill tone="purple">{t("pets.detail.format.motion")}</StatusPill> : <StatusPill tone="blue">{t("pets.detail.format.classic")}</StatusPill>}
                       {selected.broken && <StatusPill tone="red">{t("pets.badge.broken")}</StatusPill>}
                       {selected.installed && !selected.broken && <StatusPill tone="green">{t("pets.badge.ready")}</StatusPill>}
                       {selected.builtIn && <StatusPill tone="orange">{t("pets.badge.originals")}</StatusPill>}

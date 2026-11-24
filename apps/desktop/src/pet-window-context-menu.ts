@@ -245,7 +245,7 @@ export async function buildPetContextMenuTemplate(
     label: t("pet.menu.size"),
     submenu: petScaleOptions.map((option) => {
       return {
-        label: option.label,
+        label: t(option.labelKey),
         type: "checkbox",
         checked: currentScale === option.value,
         click: () => {

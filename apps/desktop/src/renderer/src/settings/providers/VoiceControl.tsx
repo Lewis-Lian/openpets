@@ -105,7 +105,7 @@ export function VoiceControl({
             <option value="">{t("settings.providers.field.voiceSystemDefault")}</option>
             {systemVoices.map((sysVoice, idx) => (
               <option key={`${sysVoice.name}-${sysVoice.lang}-${idx}`} value={sysVoice.name}>
-                {sysVoice.name} ({sysVoice.lang}){sysVoice.default ? " — default" : ""}
+                {sysVoice.name} ({sysVoice.lang}){sysVoice.default ? ` — ${t("settings.providers.voiceStyle.default")}` : ""}
               </option>
             ))}
             <option value="__custom__">{t("settings.providers.field.voiceCustomSystem")}</option>
@@ -178,8 +178,8 @@ export function VoiceControl({
             </option>
             {curatedVoices.map((curatedVoice) => (
               <option key={curatedVoice.id} value={curatedVoice.id}>
-                {curatedVoice.label}
-                {curatedVoice.description ? ` (${curatedVoice.description})` : ""}
+                {adapter === "minimax-tts" ? t(`settings.providers.voiceName.${curatedVoice.id}`) : curatedVoice.label}
+                {curatedVoice.description ? ` (${t(`settings.providers.voiceStyle.${curatedVoice.id}`)})` : ""}
               </option>
             ))}
           </select>

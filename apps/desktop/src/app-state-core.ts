@@ -5,11 +5,11 @@ export interface OnboardingPreferenceLike {
 }
 
 export const petScaleOptions = [
-  { label: "XS", value: 0.35 },
-  { label: "Small", value: 0.5 },
-  { label: "Medium", value: 0.75 },
-  { label: "Large", value: 1 },
-  { label: "Huge", value: 1.25 },
+  { labelKey: "scale.label.xs", value: 0.35 },
+  { labelKey: "scale.label.small", value: 0.5 },
+  { labelKey: "scale.label.medium", value: 0.75 },
+  { labelKey: "scale.label.large", value: 1 },
+  { labelKey: "scale.label.huge", value: 1.25 },
 ] as const;
 export type PetScaleValue = typeof petScaleOptions[number]["value"];
 export const defaultPetScale: PetScaleValue = 0.75;
@@ -20,11 +20,11 @@ const retiredLargestPetScale = 1.5;
 // separate preference from petScale: pet size is aesthetic, HUD size is about
 // readability.
 export const hudScaleOptions = [
-  { label: "XS", value: 0.85 },
-  { label: "Small", value: 1.1 },
-  { label: "Medium", value: 1.4 },
-  { label: "Large", value: 1.7 },
-  { label: "Huge", value: 2 },
+  { labelKey: "scale.label.xs", value: 0.85 },
+  { labelKey: "scale.label.small", value: 1.1 },
+  { labelKey: "scale.label.medium", value: 1.4 },
+  { labelKey: "scale.label.large", value: 1.7 },
+  { labelKey: "scale.label.huge", value: 2 },
 ] as const;
 export type HudScaleValue = typeof hudScaleOptions[number]["value"];
 export const defaultHudScale: HudScaleValue = 1.1;

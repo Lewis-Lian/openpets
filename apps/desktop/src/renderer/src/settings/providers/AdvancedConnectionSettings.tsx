@@ -168,7 +168,7 @@ export function AdvancedConnectionSettings({
                     }
                   >
                     <option value="bearer">Bearer &lt;token&gt;</option>
-                    <option value="raw">Raw &lt;token&gt;</option>
+                    <option value="raw">{t("settings.providers.voiceAuth.raw")}</option>
                   </select>
                 </div>
               )}
